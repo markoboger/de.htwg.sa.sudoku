@@ -245,4 +245,11 @@ public class SudokuController implements IObservable, ISudokuController {
 		realController.setGridName(name);
 	}
 
+	@Override
+	public void generateGridToDB(int number) {
+		pre();
+		realController.generateGridToDB(number);
+		post();
+	}
+
 }

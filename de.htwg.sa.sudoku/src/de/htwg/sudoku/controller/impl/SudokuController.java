@@ -73,7 +73,7 @@ public class SudokuController extends Observable implements ISudokuController {
 	}
 	
 	public void create() {
-		this.grid = gridFactory.create(NORMALGRID);
+		this.grid = gridFactory.create(grid.getBlockSize());
 		grid.create();
 		highlighted=0;
 		statusLine= "New Sudoku Puzzle created";
@@ -260,5 +260,10 @@ public class SudokuController extends Observable implements ISudokuController {
 	@Override
 	public void setGridName(String name) {
 		grid.setName(name);		
+	}
+
+	@Override
+	public void generateGridToDB(int number) {
+		gridDAO.generateGrids(number, NORMALGRID);		
 	}
 }

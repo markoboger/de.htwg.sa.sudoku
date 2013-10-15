@@ -165,8 +165,8 @@ public interface ISudokuController extends IObservable {
 	void resetSize(int newSize);
 
 	void loadFromDB(String name, int setCells);
-	
 	void saveToDB();
+	void generateGridToDB(int number);
 	
 	String getGridName();
 	void setGridName(String name);
