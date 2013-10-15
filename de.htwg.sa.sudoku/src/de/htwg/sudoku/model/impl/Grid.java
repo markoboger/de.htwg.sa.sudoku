@@ -11,11 +11,12 @@ import de.htwg.sudoku.model.ICell;
 
 public class Grid extends AbstractGrid{
 
-	
 	private Cell[][] cells;
 	private House[] rows;
 	private House[] columns;
 	private House[] blocks;
+	
+	private String name;
 
 	private int solutionCounter;
 	private int steps;
@@ -30,6 +31,8 @@ public class Grid extends AbstractGrid{
 		}
 		setBlockSize(blocksPerEdge);
 		setCellsPerEdge(blocksPerEdge * getBlockSize());
+		
+		name = "default";
 
 		// create Cell and Houses
 		cells = new Cell[getCellsPerEdge()][getCellsPerEdge()];
@@ -248,4 +251,24 @@ public class Grid extends AbstractGrid{
 		return rows[index];
 	}
 
+	@Override
+	public int getNumberSetCells() {
+		int count = 0;
+		for (int r = 0; r < Math.pow(getBlockSize(), 2); r++) {
+			count += this.rows[r].countSetCells();
+		}
+		return count;
+	}
+
+	@Override
+	public String getName() {
+		return this.name;
+	}
+
+	@Override
+	public void setName(String name) {
+		if(name != null) {
+			this.name = name;
+		}
+	}
 }

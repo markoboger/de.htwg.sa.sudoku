@@ -6,7 +6,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import de.htwg.sudoku.controller.ISudokuController;
-import de.htwg.sudoku.model.IGrid;
+import de.htwg.sudoku.database.IGridDatabase;
 import de.htwg.sudoku.model.IGridFactory;
 import de.htwg.util.observer.Event;
 import de.htwg.util.observer.IObservable;
@@ -21,9 +21,9 @@ public class SudokuController implements IObservable, ISudokuController {
 	private long startTime;
 
 	@Inject
-	public SudokuController(IGridFactory gridFactory) {
+	public SudokuController(IGridFactory gridFactory, IGridDatabase gridDAO) {
 		realController = new de.htwg.sudoku.controller.impl.SudokuController(
-				gridFactory);
+				gridFactory, gridDAO);
 	}
 
 	private void pre() {
@@ -176,13 +176,6 @@ public class SudokuController implements IObservable, ISudokuController {
 		post();
 	}
 
-	public IGrid getGrid() {
-		pre();
-		IGrid result = realController.getGrid();
-		post();
-		return result;
-	}
-
 	@Override
 	public void addObserver(IObserver s) {
 		pre();
@@ -216,6 +209,40 @@ public class SudokuController implements IObservable, ISudokuController {
 		pre();
 		realController.notifyObservers(e);
 		post();
+	}
+
+	@Override
+	public void loadFromDB(String name, int setCells) {
+		pre();
+		realController.loadFromDB(name, setCells);
+		post();
+	}
+
+	@Override
+	public void saveToDB() {
+		pre();
+		realController.saveToDB();
+		post();
+	}
+
+	@Override
+	public String[][] getRowDataAll() {
+		return realController.getRowDataAll();
+	}
+
+	@Override
+	public String[][] getRowData(int min, int max) {
+		return realController.getRowData(min, max);
+	}
+
+	@Override
+	public String getGridName() {
+		return realController.getGridName();
+	}
+
+	@Override
+	public void setGridName(String name) {
+		realController.setGridName(name);
 	}
 
 }

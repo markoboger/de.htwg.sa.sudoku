@@ -106,4 +106,16 @@ public class Grid extends AbstractGrid{
 		return 0;
 	}
 
+	@Override
+	public int getNumberSetCells() {
+		return 0;
+	}
+
+	@Override
+	public String getName() {
+		return "default";
+	}
+
+	@Override
+	public void setName(String name) {}
 }
