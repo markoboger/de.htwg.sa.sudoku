@@ -46,5 +46,25 @@
 	  <artifactId>guice</artifactId>
   	  <version>3.0</version>
 	</dependency>
-</dependencies>
+	<dependency>
+      <groupId>com.db4o</groupId>
+      <artifactId>db4o-full-java5</artifactId>
+      <version>8.0-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+  
+  <!-- Additional Remote Repositories -->
+  <repositories>
+    <repository>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+        <checksumPolicy>fail</checksumPolicy>
+      </snapshots>
+      <id>db4o</id>
+      <name>DB4O</name>
+      <url>http://source.db4o.com/maven</url>
+      <layout>default</layout>
+    </repository>
+  </repositories>
 </project>

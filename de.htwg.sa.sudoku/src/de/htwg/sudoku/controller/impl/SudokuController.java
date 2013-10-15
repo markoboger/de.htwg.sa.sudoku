@@ -7,6 +7,7 @@ import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 import java.util.BitSet;
+import java.util.List;
 
 import javax.swing.undo.UndoManager;
 
@@ -16,6 +17,7 @@ import com.google.inject.Singleton;
 import de.htwg.sudoku.controller.ISudokuController;
 import de.htwg.sudoku.controller.SetValueCommand;
 import de.htwg.sudoku.controller.SizeChangedEvent;
+import de.htwg.sudoku.database.IGridDatabase;
 import de.htwg.sudoku.model.ICell;
 import de.htwg.sudoku.model.IGrid;
 import de.htwg.sudoku.model.IGridFactory;
@@ -31,15 +33,15 @@ public class SudokuController extends Observable implements ISudokuController {
 	private UndoManager undoManager;
 	private int highlighted=0;
 	private static final int NORMALGRID=3;
+	private IGridDatabase gridDAO;
 
 	@Inject
-	public SudokuController(IGridFactory gridFactory) {
+	public SudokuController(IGridFactory gridFactory, IGridDatabase gridDAO) {
 		this.gridFactory=gridFactory;
 		this.grid = gridFactory.create(NORMALGRID);
 		this.undoManager = new UndoManager();
+		this.gridDAO = gridDAO;
 	}
-	
-
 	
 	public void setValue(int row, int column, int value) {
 		ICell cell = grid.getICell(row, column);
@@ -71,6 +73,7 @@ public class SudokuController extends Observable implements ISudokuController {
 	}
 	
 	public void create() {
+		this.grid = gridFactory.create(grid.getBlockSize());
 		grid.create();
 		highlighted=0;
 		statusLine= "New Sudoku Puzzle created";
@@ -196,7 +199,6 @@ public class SudokuController extends Observable implements ISudokuController {
 	public void parseStringToGrid(String gridString) {
 		grid.parseStringToGrid(gridString);
 		notifyObservers();
-		
 	}
 
 	@Override
@@ -210,5 +212,58 @@ public class SudokuController extends Observable implements ISudokuController {
 	public IGrid getGrid() {
 		return grid;
 	}
-	
+
+	@Override
+	public void loadFromDB(String name, int setCells) {
+		this.grid = gridDAO.getGrid(name, setCells);
+		this.highlighted = 0;
+		this.statusLine = "New Sudoku Puzzle loaded";
+		notifyObservers();
+	}
+
+	@Override
+	public void saveToDB() {
+		gridDAO.saveGrid(grid);
+	}
+
+	@Override
+	public String[][] getRowDataAll() {
+		List<IGrid> grids = gridDAO.getAllGrids();
+		String[][] data = new String[grids.size()][2];
+		for(int i = 0; i < grids.size(); i++) {
+			IGrid g = grids.get(i);
+			data[i][0] = g.getName();
+			data[i][1] = String.valueOf(g.getNumberSetCells());
+		}
+		return data;
+	}
+
+
+
+	@Override
+	public String[][] getRowData(int min, int max) {
+		List<IGrid> grids = gridDAO.getGridsByDifficulty(max, min);
+		String[][] data = new String[grids.size()][2];
+		for(int i = 0; i < grids.size(); i++) {
+			IGrid g = grids.get(i);
+			data[i][0] = g.getName();
+			data[i][1] = String.valueOf(g.getNumberSetCells());
+		}
+		return data;
+	}
+
+	@Override
+	public String getGridName() {
+		return grid.getName();
+	}
+
+	@Override
+	public void setGridName(String name) {
+		grid.setName(name);		
+	}
+
+	@Override
+	public void generateGridToDB(int number) {
+		gridDAO.generateGrids(number, NORMALGRID);		
+	}
 }

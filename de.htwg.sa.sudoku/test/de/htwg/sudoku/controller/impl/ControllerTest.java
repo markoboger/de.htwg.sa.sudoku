@@ -3,9 +3,11 @@ package de.htwg.sudoku.controller.impl;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.htwg.sudoku.database.impl.GridDb4oDatabase;
 import de.htwg.sudoku.model.IGrid;
 import de.htwg.sudoku.model.impl.GridFactory;
 
@@ -15,13 +17,20 @@ public class ControllerTest {
 	private IGrid grid1;
 	SudokuController controller1;
 	GridFactory gridFactory;
-
+	private GridDb4oDatabase db4oDao;
+	
 	@Before
 	public void setUp() throws Exception {
 	    gridFactory = new GridFactory();
-		controller1 = new SudokuController(gridFactory);
+	    db4oDao = new GridDb4oDatabase();
+		controller1 = new SudokuController(gridFactory,  db4oDao);
 		controller1.resetSize(1);
 		grid1= controller1.getGrid();
+	}
+	
+	@After
+	public void after() {
+		db4oDao.closeDb();
 	}
 
 	@Test

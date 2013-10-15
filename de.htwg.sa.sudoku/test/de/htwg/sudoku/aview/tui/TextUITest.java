@@ -6,10 +6,12 @@ import static org.junit.Assert.assertTrue;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import de.htwg.sudoku.controller.impl.SudokuController;
+import de.htwg.sudoku.database.impl.GridDb4oDatabase;
 import de.htwg.sudoku.model.impl.Grid;
 import de.htwg.sudoku.model.impl.GridFactory;
 
@@ -20,15 +22,21 @@ public class TextUITest {
 	private TextUI tui1;
 	
 	static Logger logger = Logger.getLogger(TextUITest.class);
+	private GridDb4oDatabase db4oDao;
 
 	@Before
 	public void setUp() throws Exception {
 		PropertyConfigurator.configure("log4j.properties");
-		
-		controller1 = new SudokuController(new GridFactory());
+		db4oDao = new GridDb4oDatabase();
+		controller1 = new SudokuController(new GridFactory(), db4oDao);
 		controller1.resetSize(1);
 		grid1 = (Grid) controller1.getGrid();
 		tui1 = new TextUI(controller1);
+	}
+	
+	@After
+	public void after() {
+		db4oDao.closeDb();
 	}
 
 	@Test

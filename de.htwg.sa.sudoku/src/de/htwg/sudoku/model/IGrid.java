@@ -70,6 +70,13 @@ public interface IGrid {
 	 * @return
 	 */
 	BitSet candidates(int row, int col);
-
-
+	
+	/**
+	 * Counts all Set Cells within a grid.
+	 * @return
+	 */
+	int getNumberSetCells();
+	
+	String getName();
+	void setName(String name);
 }
