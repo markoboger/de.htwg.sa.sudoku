@@ -1,4 +1,4 @@
-package de.htwg.sudoku.database.impl;
+package de.htwg.sudoku.persistence.db4o;
 
 import java.util.List;
 
@@ -6,15 +6,15 @@ import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
 import com.db4o.query.Predicate;
 
-import de.htwg.sudoku.database.IGridDatabase;
 import de.htwg.sudoku.model.IGrid;
 import de.htwg.sudoku.model.impl.Grid;
+import de.htwg.sudoku.persistence.IGridDAO;
 
-public class GridDb4oDatabase implements IGridDatabase {
+public class GridDb4oDAO implements IGridDAO {
 
 	private ObjectContainer db;
 
-	public GridDb4oDatabase() {
+	public GridDb4oDAO() {
 		db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),
 				"grid.data");
 	}

@@ -1,10 +1,10 @@
-package de.htwg.sudoku.database;
+package de.htwg.sudoku.persistence;
 
 import java.util.List;
 
 import de.htwg.sudoku.model.IGrid;
 
-public interface IGridDatabase {
+public interface IGridDAO {
 	
 	void saveGrid(IGrid grid);
 	
