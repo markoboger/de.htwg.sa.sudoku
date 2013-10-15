@@ -17,10 +17,10 @@ import com.google.inject.Singleton;
 import de.htwg.sudoku.controller.ISudokuController;
 import de.htwg.sudoku.controller.SetValueCommand;
 import de.htwg.sudoku.controller.SizeChangedEvent;
-import de.htwg.sudoku.database.IGridDatabase;
 import de.htwg.sudoku.model.ICell;
 import de.htwg.sudoku.model.IGrid;
 import de.htwg.sudoku.model.IGridFactory;
+import de.htwg.sudoku.persistence.IGridDAO;
 import de.htwg.util.observer.Event;
 import de.htwg.util.observer.Observable;
 
@@ -33,10 +33,10 @@ public class SudokuController extends Observable implements ISudokuController {
 	private UndoManager undoManager;
 	private int highlighted=0;
 	private static final int NORMALGRID=3;
-	private IGridDatabase gridDAO;
+	private IGridDAO gridDAO;
 
 	@Inject
-	public SudokuController(IGridFactory gridFactory, IGridDatabase gridDAO) {
+	public SudokuController(IGridFactory gridFactory, IGridDAO gridDAO) {
 		this.gridFactory=gridFactory;
 		this.grid = gridFactory.create(NORMALGRID);
 		this.undoManager = new UndoManager();

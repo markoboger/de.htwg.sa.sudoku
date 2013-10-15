@@ -7,9 +7,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.htwg.sudoku.database.impl.GridDb4oDatabase;
 import de.htwg.sudoku.model.IGrid;
 import de.htwg.sudoku.model.impl.GridFactory;
+import de.htwg.sudoku.persistence.db4o.GridDb4oDAO;
 
 public class ControllerTest {
 	String newLine = System.getProperty("line.separator");
@@ -17,12 +17,12 @@ public class ControllerTest {
 	private IGrid grid1;
 	SudokuController controller1;
 	GridFactory gridFactory;
-	private GridDb4oDatabase db4oDao;
+	private GridDb4oDAO db4oDao;
 	
 	@Before
 	public void setUp() throws Exception {
 	    gridFactory = new GridFactory();
-	    db4oDao = new GridDb4oDatabase();
+	    db4oDao = new GridDb4oDAO();
 		controller1 = new SudokuController(gridFactory,  db4oDao);
 		controller1.resetSize(1);
 		grid1= controller1.getGrid();

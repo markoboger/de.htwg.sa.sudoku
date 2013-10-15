@@ -6,8 +6,8 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import de.htwg.sudoku.controller.ISudokuController;
-import de.htwg.sudoku.database.IGridDatabase;
 import de.htwg.sudoku.model.IGridFactory;
+import de.htwg.sudoku.persistence.IGridDAO;
 import de.htwg.util.observer.Event;
 import de.htwg.util.observer.IObservable;
 import de.htwg.util.observer.IObserver;
@@ -21,7 +21,7 @@ public class SudokuController implements IObservable, ISudokuController {
 	private long startTime;
 
 	@Inject
-	public SudokuController(IGridFactory gridFactory, IGridDatabase gridDAO) {
+	public SudokuController(IGridFactory gridFactory, IGridDAO gridDAO) {
 		realController = new de.htwg.sudoku.controller.impl.SudokuController(
 				gridFactory, gridDAO);
 	}
