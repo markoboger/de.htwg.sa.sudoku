@@ -16,7 +16,7 @@ public class GridDb4oDatabase implements IGridDatabase {
 
 	public GridDb4oDatabase() {
 		db = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),
-				"target/grid.data");
+				"grid.data");
 	}
 
 	@Override
