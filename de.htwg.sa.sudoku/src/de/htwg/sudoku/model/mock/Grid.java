@@ -1,6 +1,7 @@
 package de.htwg.sudoku.model.mock;
 
 import java.util.BitSet;
+import java.util.UUID;
 
 import de.htwg.sudoku.model.AbstractGrid;
 import de.htwg.sudoku.model.ICell;
@@ -118,4 +119,9 @@ public class Grid extends AbstractGrid{
 
 	@Override
 	public void setName(String name) {}
+
+	@Override
+	public UUID getId() {
+		return UUID.randomUUID();
+	}
 }

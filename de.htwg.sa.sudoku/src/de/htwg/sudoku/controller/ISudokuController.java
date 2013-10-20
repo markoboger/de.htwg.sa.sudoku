@@ -1,5 +1,7 @@
 package de.htwg.sudoku.controller;
 
+import java.util.UUID;
+
 import de.htwg.util.observer.IObservable;
 
 public interface ISudokuController extends IObservable {
@@ -164,8 +166,9 @@ public interface ISudokuController extends IObservable {
 	 */
 	void resetSize(int newSize);
 
-	void loadFromDB(String name, int setCells);
+	void loadFromDB(UUID gridId);
 	void saveToDB();
+	boolean containsActualGridDB();
 	void generateGridToDB(int number);
 	
 	String getGridName();

@@ -1,22 +1,23 @@
 package de.htwg.sudoku.persistence;
 
 import java.util.List;
+import java.util.UUID;
 
 import de.htwg.sudoku.model.IGrid;
 
 public interface IGridDAO {
 	
-	void saveGrid(IGrid grid);
+	void saveGrid(final IGrid grid);
 	
-	boolean containsGridByName(String name);
+	boolean containsGridById(final UUID id);
 	
-	List<IGrid> getGridsByDifficulty(int max, int min);
+	List<IGrid> getGridsByDifficulty(final int max, final int min);
 	
-	IGrid getGrid(String name, int setCells);
+	IGrid getGridById(final UUID id);
 	
-	void deleteGrid(IGrid grid);
+	void deleteGridById(final UUID id);
 	
 	List<IGrid> getAllGrids();
 	
-	void generateGrids(int number, int gridSize);
+	void generateGrids(final int number, int gridSize);
 }

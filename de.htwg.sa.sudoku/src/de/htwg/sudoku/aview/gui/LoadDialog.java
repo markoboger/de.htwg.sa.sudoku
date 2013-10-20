@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.UUID;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -28,13 +29,14 @@ public class LoadDialog extends JDialog {
 	private static final long serialVersionUID = 1L;
 
 	private JTable table;
-	private String[] columnNames = { "Name", "Difficulty" };
+	private String[] columnNames = { "Name", "Difficulty"};
 	private ISudokuController controller;
 	private JComboBox<String> diffCombo;
+	private String[][] rowData;
 	
-
 	public LoadDialog(final ISudokuController controller) {
 		this.controller = controller;
+		this.rowData = controller.getRowDataAll();
 
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
@@ -95,11 +97,8 @@ public class LoadDialog extends JDialog {
 							"Please choose an entry first.");
 					return;
 				}
-				String name = (String) LoadDialog.this.table.getValueAt(rowIdx,
-						0);
-				String setCells = (String) LoadDialog.this.table.getValueAt(
-						rowIdx, 1);
-				controller.loadFromDB(name, Integer.parseInt(setCells));
+				String id = (String) LoadDialog.this.rowData[rowIdx][2];
+				controller.loadFromDB(UUID.fromString(id));
 				LoadDialog.this.setVisible(false);
 			}
 		});
@@ -125,9 +124,7 @@ public class LoadDialog extends JDialog {
 		this.setVisible(true);
 	}
 
-	protected void updateTable() {
-		String[][] rowData;
-		
+	private void updateTable() {		
 		String difficulty = (String) diffCombo.getSelectedItem();
 		if (difficulty.equals("Easy")) {
 			rowData = controller.getRowData(55, 81);
