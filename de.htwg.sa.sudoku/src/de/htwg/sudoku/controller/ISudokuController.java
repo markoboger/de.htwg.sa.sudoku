@@ -166,14 +166,50 @@ public interface ISudokuController extends IObservable {
 	 */
 	void resetSize(int newSize);
 
+	/**
+	 * Load a grid from the database
+	 * @param gridId
+	 */
 	void loadFromDB(UUID gridId);
+	
+	/**
+	 * Save a grid to the database
+	 */
 	void saveToDB();
+	
+	/**
+	 * Check whether the actual grid is already in database
+	 * @return true if the entry exists, false if not
+	 */
 	boolean containsActualGridDB();
+	
+	/**
+	 * Generate a number of grids and save them to the database
+	 * @param number
+	 */
 	void generateGridToDB(int number);
 	
+	/**
+	 * Generate a number of grids and save them to the database
+	 * @return the name of the grid
+	 */
 	String getGridName();
+	
+	/**
+	 * Generate a number of grids and save them to the database
+	 * @param the name of the grid
+	 */
 	void setGridName(String name);
-
+	
+	/**
+	 * Get all row data for the gui table to display
+	 * @return Array containing grid data (name, cells, id) for the table
+	 */
 	String[][] getRowDataAll();
+	
+	/**
+	 * Get specific (difficulty) row data for the gui table to display
+	 * @return Array containing grid data (name, cells, id) for the table
+	 */
 	String[][] getRowData(int min, int max);
 }
