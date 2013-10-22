@@ -7,6 +7,7 @@ public abstract class AbstractCell implements ICell{
 	private int row;
 	private int column;
 	private boolean given;
+	private boolean hint;
 	private boolean showCandidates;
 
 	
@@ -16,6 +17,7 @@ public abstract class AbstractCell implements ICell{
 	}
 
 	public void setValue(int value) {
+		this.setHint(false);
 		this.value = value;
 	}
 
@@ -38,6 +40,15 @@ public abstract class AbstractCell implements ICell{
 		return value == 0 ? false : true;
 	}
 	
+	
+	public boolean isHint() {
+		return hint;
+	}
+
+	public void setHint(boolean hint) {
+		this.hint = hint;
+	}
+
 	/**
 	 * returns a String of the form "(0,0) = 1"
 	 */

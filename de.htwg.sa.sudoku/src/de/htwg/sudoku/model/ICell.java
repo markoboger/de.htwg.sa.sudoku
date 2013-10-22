@@ -47,4 +47,9 @@ public interface ICell {
 	 */
 	void toggleShowCandidates();
 
+	void setHint(boolean b);
+
+	boolean isHint();
+
+
 }

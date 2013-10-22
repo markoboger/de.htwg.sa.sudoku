@@ -6,6 +6,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import de.htwg.sudoku.controller.ISudokuController;
+import de.htwg.sudoku.model.IGrid;
 import de.htwg.sudoku.model.IGridFactory;
 import de.htwg.sudoku.persistence.IGridDAO;
 import de.htwg.util.observer.Event;
@@ -250,6 +251,22 @@ public class SudokuController implements IObservable, ISudokuController {
 		pre();
 		realController.generateGridToDB(number);
 		post();
+	}
+
+	@Override
+	public IGrid getGrid() {
+		return realController.getGrid();
+	}
+
+	@Override
+	public boolean isHint(int row, int column) {
+		return realController.isHint(row,column);
+	}
+
+	@Override
+	public void setStatusLine(String string) {
+		realController.setStatusLine(string);
+		
 	}
 
 }

@@ -1,5 +1,6 @@
 package de.htwg.sudoku.controller;
 
+import de.htwg.sudoku.model.IGrid;
 import de.htwg.util.observer.IObservable;
 
 public interface ISudokuController extends IObservable {
@@ -170,7 +171,13 @@ public interface ISudokuController extends IObservable {
 	
 	String getGridName();
 	void setGridName(String name);
+	
+	IGrid getGrid();
 
 	String[][] getRowDataAll();
 	String[][] getRowData(int min, int max);
+
+	boolean isHint(int row, int column);
+
+	void setStatusLine(String string);
 }

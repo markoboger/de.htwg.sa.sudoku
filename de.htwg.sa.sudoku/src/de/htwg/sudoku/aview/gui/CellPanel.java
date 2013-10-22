@@ -49,7 +49,10 @@ public class CellPanel extends JPanel {
 		}
 		else if (!controller.isSet(row, column) && controller.isHighlighted(row, column)){
 			g.setColor(Constances.HIGHLIGHTED_CELL_BACKGROUND_COLOR);
-		} else {
+		} else if (controller.isHint(row,column)) {
+			g.setColor(Constances.SUPPORTING_CELL_BACKGROUND_COLOR);
+		} 
+		else {
 			g.setColor(Constances.CELL_BACKGROUND_COLOR);
 		}
 		g.fillRect(inset + 2, inset + 2, getWidth() - inset * 2 - correction, getHeight() - inset

@@ -14,6 +14,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Iterator;
+import java.util.Set;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -27,6 +29,7 @@ import com.google.inject.Inject;
 
 import de.htwg.sudoku.controller.ISudokuController;
 import de.htwg.sudoku.controller.SizeChangedEvent;
+import de.htwg.sudoku.solverplugin.SolverPlugin;
 import de.htwg.util.observer.Event;
 import de.htwg.util.observer.IObserver;
 
@@ -43,7 +46,7 @@ public class SudokuFrame extends JFrame implements IObserver {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	public SudokuFrame(final ISudokuController controller) {
+	public SudokuFrame(final ISudokuController controller, Set<SolverPlugin> plugins) {
 		this.controller = controller;
 		controller.addObserver(this);
 		
@@ -56,7 +59,7 @@ public class SudokuFrame extends JFrame implements IObserver {
 		JMenuItem undoMenuItem, redoMenuItem, copyMenuItem, pasteMenuItem;
 
 		JMenu solveMenu;
-		JMenuItem solveMenuItem;
+		JMenuItem solveMenuItem, pluginMenuItem;
 
 
 		JMenu digitMenu;
@@ -228,6 +231,18 @@ public class SudokuFrame extends JFrame implements IObserver {
 		solveMenu.add(solveMenuItem);
 		menuBar.add(solveMenu);
 		
+		Iterator<SolverPlugin> iter = plugins.iterator();
+		while (iter.hasNext()) {
+			final SolverPlugin plugin = iter.next();
+			pluginMenuItem = new JMenuItem(plugin.getSolverName());
+			pluginMenuItem.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					plugin.solve(controller);
+				}
+			});
+			solveMenu.add(pluginMenuItem);
+		}
+		
 		/*
 		 * Highlight Menu
 		 */
@@ -323,19 +338,19 @@ public class SudokuFrame extends JFrame implements IObserver {
 	}
 
 	public final void constructSudokuPane(ISudokuController controller) {
-		if (digitPanel != null){
+		if (digitPanel != null) {
 			pane.remove(digitPanel);
 		}
 		digitPanel = new HighlightButtonPanel(controller);
 		pane.add(digitPanel, BorderLayout.NORTH);
 
-		if (gridPanel != null){
+		if (gridPanel != null) {
 			pane.remove(gridPanel);
 		}
 		gridPanel = new GridPanel(controller);
 		pane.add(gridPanel, BorderLayout.CENTER);
 
-		if (statusPanel != null){
+		if (statusPanel != null) {
 			pane.remove(statusPanel);
 		}
 		statusPanel = new StatusPanel();
@@ -351,23 +366,25 @@ public class SudokuFrame extends JFrame implements IObserver {
 		}
 		repaint();
 	}
-	public void load(JFrame frame){
+
+	public void load(JFrame frame) {
 		JFileChooser fileChooser = new JFileChooser(".");
 		int result = fileChooser.showOpenDialog(frame);
 		if (result == JFileChooser.APPROVE_OPTION) {
 			try {
-				FileInputStream fis = new FileInputStream(fileChooser
-						.getSelectedFile());
+				FileInputStream fis = new FileInputStream(
+						fileChooser.getSelectedFile());
 				ObjectInputStream inStream = new ObjectInputStream(fis);
 				controller.parseStringToGrid((String) inStream.readObject());
 				inStream.close();
 			} catch (IOException ioe) {
-				JOptionPane.showMessageDialog(frame,
+				JOptionPane.showMessageDialog(
+						frame,
 						"IOException reading sudoku:\n"
 								+ ioe.getLocalizedMessage(), "Error",
 						JOptionPane.ERROR_MESSAGE);
 			} catch (ClassNotFoundException e) {
-				
+
 			}
 		}
 	}
@@ -378,9 +395,9 @@ public class SudokuFrame extends JFrame implements IObserver {
 		if (result == JFileChooser.APPROVE_OPTION) {
 			File file = fileChooser.getSelectedFile();
 			if (file.exists()
-					&& JOptionPane.showConfirmDialog(frame, "File \""
-							+ file.getName() + "\" already exists.\n"
-							+ "Would you like to replace it?", "Save",
+					&& JOptionPane.showConfirmDialog(frame,
+							"File \"" + file.getName() + "\" already exists.\n"
+									+ "Would you like to replace it?", "Save",
 							JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION) {
 				return;
 			}
@@ -392,7 +409,8 @@ public class SudokuFrame extends JFrame implements IObserver {
 				outStream.close();
 
 			} catch (IOException ioe) {
-				JOptionPane.showMessageDialog(frame,
+				JOptionPane.showMessageDialog(
+						frame,
 						"IOException saving sudoku:\n"
 								+ ioe.getLocalizedMessage(), "Error",
 						JOptionPane.ERROR_MESSAGE);
@@ -401,4 +419,3 @@ public class SudokuFrame extends JFrame implements IObserver {
 	}
 
 }
-

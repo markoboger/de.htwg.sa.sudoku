@@ -266,4 +266,15 @@ public class SudokuController extends Observable implements ISudokuController {
 	public void generateGridToDB(int number) {
 		gridDAO.generateGrids(number, NORMALGRID);		
 	}
+
+	@Override
+	public boolean isHint(int row, int column) {
+		return grid.getICell(row, column).isHint();
+	}
+
+	@Override
+	public void setStatusLine(String string) {
+		statusLine=string;
+		
+	}
 }
