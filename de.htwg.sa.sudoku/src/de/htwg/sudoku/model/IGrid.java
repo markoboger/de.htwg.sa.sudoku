@@ -1,6 +1,7 @@
 package de.htwg.sudoku.model;
 
 import java.util.BitSet;
+import java.util.UUID;
 
 public interface IGrid {
 
@@ -77,6 +78,18 @@ public interface IGrid {
 	 */
 	int getNumberSetCells();
 	
+	/**
+	 * @return A name for this grid
+	 */
 	String getName();
+	
+	/**
+	 * @param A name for this grid
+	 */
 	void setName(String name);
+	
+	/**
+	 * @return An unique ID for this grid
+	 */
+	UUID getId();
 }
