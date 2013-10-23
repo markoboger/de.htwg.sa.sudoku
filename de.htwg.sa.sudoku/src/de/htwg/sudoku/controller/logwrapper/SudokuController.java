@@ -269,7 +269,8 @@ public class SudokuController implements IObservable, ISudokuController {
 	@Override
 	public void setStatusLine(String string) {
 		realController.setStatusLine(string);
-		
+	}
+	
 	public boolean containsActualGridDB() {
 		return realController.containsActualGridDB();
 	}

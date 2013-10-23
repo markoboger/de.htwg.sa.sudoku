@@ -1,10 +1,9 @@
 package de.htwg.sudoku.controller;
 
 import de.htwg.sudoku.model.IGrid;
-=======
+
 import java.util.UUID;
 
->>>>>>> refs/remotes/origin/master
 import de.htwg.util.observer.IObservable;
 
 public interface ISudokuController extends IObservable {

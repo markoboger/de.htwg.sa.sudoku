@@ -276,7 +276,8 @@ public class SudokuController extends Observable implements ISudokuController {
 
 	@Override
 	public void setStatusLine(String string) {
-		statusLine=string;		
+		statusLine=string;	
+	}
 
 	public boolean containsActualGridDB() {
 		return gridDAO.containsGridById(grid.getId());
