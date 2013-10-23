@@ -5,6 +5,7 @@ import java.util.BitSet;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 import de.htwg.sudoku.model.AbstractGrid;
 import de.htwg.sudoku.model.ICell;
@@ -17,6 +18,7 @@ public class Grid extends AbstractGrid{
 	private House[] blocks;
 	
 	private String name;
+	private UUID id;
 
 	private int solutionCounter;
 	private int steps;
@@ -32,7 +34,8 @@ public class Grid extends AbstractGrid{
 		setBlockSize(blocksPerEdge);
 		setCellsPerEdge(blocksPerEdge * getBlockSize());
 		
-		name = "default";
+		this.name = "default";
+		this.id = UUID.randomUUID();
 
 		// create Cell and Houses
 		cells = new Cell[getCellsPerEdge()][getCellsPerEdge()];
@@ -267,8 +270,11 @@ public class Grid extends AbstractGrid{
 
 	@Override
 	public void setName(String name) {
-		if(name != null) {
-			this.name = name;
-		}
+		if(name != null) this.name = name;
+	}
+
+	@Override
+	public UUID getId() {
+		return this.id;
 	}
 }

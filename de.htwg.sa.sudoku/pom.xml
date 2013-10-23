@@ -20,7 +20,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.5.1</version>
+        <version>3.0</version>
         <configuration>
           <source>1.7</source>
           <target>1.7</target>
@@ -46,6 +46,12 @@
 	  <artifactId>guice</artifactId>
   	  <version>3.0</version>
 	</dependency>
+    <dependency>
+	   <groupId>com.google.inject.extensions</groupId>
+	   <artifactId>guice-multibindings</artifactId>
+	   <version>3.0</version>
+   </dependency>
+            
 	<dependency>
       <groupId>com.db4o</groupId>
       <artifactId>db4o-full-java5</artifactId>
@@ -67,4 +73,13 @@
       <layout>default</layout>
     </repository>
   </repositories>
+  
+  <distributionManagement>
+    <snapshotRepository>
+        <id>lenny2</id>
+        <name>lenny2-snapshots</name>
+        <url>http://lenny2.in.htwg-konstanz.de:8081/artifactory/libs-snapshot-local</url>
+    </snapshotRepository>
+  </distributionManagement>
+  
 </project>

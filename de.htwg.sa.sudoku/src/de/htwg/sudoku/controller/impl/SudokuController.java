@@ -8,6 +8,7 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 import java.util.BitSet;
 import java.util.List;
+import java.util.UUID;
 
 import javax.swing.undo.UndoManager;
 
@@ -214,10 +215,10 @@ public class SudokuController extends Observable implements ISudokuController {
 	}
 
 	@Override
-	public void loadFromDB(String name, int setCells) {
-		this.grid = gridDAO.getGrid(name, setCells);
+	public void loadFromDB(UUID gridId) {
+		this.grid = gridDAO.getGridById(gridId);
 		this.highlighted = 0;
-		this.statusLine = "New Sudoku Puzzle loaded";
+		this.statusLine = "Sudoku Puzzle loaded";
 		notifyObservers();
 	}
 
@@ -229,25 +230,25 @@ public class SudokuController extends Observable implements ISudokuController {
 	@Override
 	public String[][] getRowDataAll() {
 		List<IGrid> grids = gridDAO.getAllGrids();
-		String[][] data = new String[grids.size()][2];
+		String[][] data = new String[grids.size()][3];
 		for(int i = 0; i < grids.size(); i++) {
 			IGrid g = grids.get(i);
 			data[i][0] = g.getName();
 			data[i][1] = String.valueOf(g.getNumberSetCells());
+			data[i][2] = g.getId().toString();
 		}
 		return data;
 	}
 
-
-
 	@Override
 	public String[][] getRowData(int min, int max) {
 		List<IGrid> grids = gridDAO.getGridsByDifficulty(max, min);
-		String[][] data = new String[grids.size()][2];
+		String[][] data = new String[grids.size()][3];
 		for(int i = 0; i < grids.size(); i++) {
 			IGrid g = grids.get(i);
 			data[i][0] = g.getName();
 			data[i][1] = String.valueOf(g.getNumberSetCells());
+			data[i][2] = g.getId().toString();
 		}
 		return data;
 	}
@@ -268,13 +269,17 @@ public class SudokuController extends Observable implements ISudokuController {
 	}
 
 	@Override
+
 	public boolean isHint(int row, int column) {
 		return grid.getICell(row, column).isHint();
 	}
 
 	@Override
 	public void setStatusLine(String string) {
-		statusLine=string;
-		
+		statusLine=string;		
+
+	public boolean containsActualGridDB() {
+		return gridDAO.containsGridById(grid.getId());
+
 	}
 }

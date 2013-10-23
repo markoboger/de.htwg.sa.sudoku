@@ -1,5 +1,7 @@
 package de.htwg.sudoku.controller.logwrapper;
 
+import java.util.UUID;
+
 import org.apache.log4j.Logger;
 
 import com.google.inject.Inject;
@@ -213,9 +215,9 @@ public class SudokuController implements IObservable, ISudokuController {
 	}
 
 	@Override
-	public void loadFromDB(String name, int setCells) {
+	public void loadFromDB(UUID id) {
 		pre();
-		realController.loadFromDB(name, setCells);
+		realController.loadFromDB(id);
 		post();
 	}
 
@@ -254,6 +256,7 @@ public class SudokuController implements IObservable, ISudokuController {
 	}
 
 	@Override
+
 	public IGrid getGrid() {
 		return realController.getGrid();
 	}
@@ -267,6 +270,8 @@ public class SudokuController implements IObservable, ISudokuController {
 	public void setStatusLine(String string) {
 		realController.setStatusLine(string);
 		
+	public boolean containsActualGridDB() {
+		return realController.containsActualGridDB();
 	}
 
 }
