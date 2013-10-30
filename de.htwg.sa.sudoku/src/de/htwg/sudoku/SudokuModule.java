@@ -23,6 +23,5 @@ public class SudokuModule extends AbstractModule {
 		Multibinder<SolverPlugin> plugins = Multibinder.newSetBinder(binder(), SolverPlugin.class);
 		plugins.addBinding().to(NakedSingleSolver.class);
 		plugins.addBinding().to(HiddenSingleSolver.class);
-		
 	}
 }
