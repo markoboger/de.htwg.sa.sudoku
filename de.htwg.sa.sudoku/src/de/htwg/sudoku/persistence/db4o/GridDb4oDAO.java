@@ -1,7 +1,6 @@
 package de.htwg.sudoku.persistence.db4o;
 
 import java.util.List;
-import java.util.UUID;
 
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
@@ -56,7 +55,7 @@ public class GridDb4oDAO implements IGridDAO {
 	}
 
 	@Override
-	public void deleteGridById(final UUID id) {
+	public void deleteGridById(final String id) {
 		db.delete(getGridById(id));
 	}
 
@@ -83,7 +82,7 @@ public class GridDb4oDAO implements IGridDAO {
 	}
 
 	@Override
-	public boolean containsGridById(final UUID id) {
+	public boolean containsGridById(final String id) {
 		List<IGrid> grids = db.query(new Predicate<IGrid>() {
 
 			private static final long serialVersionUID = 1L;
@@ -100,7 +99,7 @@ public class GridDb4oDAO implements IGridDAO {
 	}
 
 	@Override
-	public IGrid getGridById(final UUID id) {
+	public IGrid getGridById(final String id) {
 		List<IGrid> grids = db.query(new Predicate<IGrid>() {
 
 			private static final long serialVersionUID = 1L;

@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.UUID;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -98,7 +97,7 @@ public class LoadDialog extends JDialog {
 					return;
 				}
 				String id = (String) LoadDialog.this.rowData[rowIdx][2];
-				controller.loadFromDB(UUID.fromString(id));
+				controller.loadFromDB(id);
 				LoadDialog.this.setVisible(false);
 			}
 		});

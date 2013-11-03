@@ -10,8 +10,6 @@ public abstract class AbstractCell implements ICell{
 	private boolean hint;
 	private boolean showCandidates;
 
-	
-
 	public int getValue() {
 		return value;
 	}
@@ -68,6 +66,7 @@ public abstract class AbstractCell implements ICell{
 		return !isSet();
 	}
 	
+	@Override
 	public void setGiven(boolean b) {
 		given = b;
 	}

@@ -24,6 +24,12 @@ public interface ICell {
 	 * @return
 	 */
 	boolean isGiven();
+	
+	/**
+	 * Set the value given to b. 
+	 * @param b
+	 */
+	void setGiven(boolean b);
 
 	/**
 	 * A set cell already contains a value different from 0. 
@@ -50,6 +56,4 @@ public interface ICell {
 	void setHint(boolean b);
 
 	boolean isHint();
-
-
 }

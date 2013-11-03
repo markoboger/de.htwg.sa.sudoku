@@ -18,7 +18,7 @@ public class Grid extends AbstractGrid{
 	private House[] blocks;
 	
 	private String name;
-	private UUID id;
+	private String id;
 
 	private int solutionCounter;
 	private int steps;
@@ -26,7 +26,7 @@ public class Grid extends AbstractGrid{
 	private static final int MAXSIZE = 3;
 	private GridCreateStrategyTemplate createStrategy = AbstractGridCreateStrategyFactory.getFactory().getInstance();
 
-	public Grid( int blocksPerEdge) {
+	public Grid(int blocksPerEdge) {
 		if (blocksPerEdge <= 0 || MAXSIZE < blocksPerEdge){
 			throw new IllegalArgumentException(
 					"blocksPerEdge must be 1, 2 or 3");
@@ -35,7 +35,7 @@ public class Grid extends AbstractGrid{
 		setCellsPerEdge(blocksPerEdge * getBlockSize());
 		
 		this.name = "default";
-		this.id = UUID.randomUUID();
+		this.id = UUID.randomUUID().toString();
 
 		// create Cell and Houses
 		cells = new Cell[getCellsPerEdge()][getCellsPerEdge()];
@@ -274,7 +274,12 @@ public class Grid extends AbstractGrid{
 	}
 
 	@Override
-	public UUID getId() {
+	public String getId() {
 		return this.id;
+	}
+	
+	@Override
+	public void setId(String id) {
+		this.id = id;
 	}
 }

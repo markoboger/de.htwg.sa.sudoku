@@ -1,7 +1,5 @@
 package de.htwg.sudoku.controller.logwrapper;
 
-import java.util.UUID;
-
 import org.apache.log4j.Logger;
 
 import com.google.inject.Inject;
@@ -215,7 +213,7 @@ public class SudokuController implements IObservable, ISudokuController {
 	}
 
 	@Override
-	public void loadFromDB(UUID id) {
+	public void loadFromDB(String id) {
 		pre();
 		realController.loadFromDB(id);
 		post();

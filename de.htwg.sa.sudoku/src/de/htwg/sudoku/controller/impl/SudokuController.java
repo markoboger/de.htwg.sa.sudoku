@@ -8,7 +8,6 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 import java.util.BitSet;
 import java.util.List;
-import java.util.UUID;
 
 import javax.swing.undo.UndoManager;
 
@@ -215,7 +214,7 @@ public class SudokuController extends Observable implements ISudokuController {
 	}
 
 	@Override
-	public void loadFromDB(UUID gridId) {
+	public void loadFromDB(String gridId) {
 		this.grid = gridDAO.getGridById(gridId);
 		this.highlighted = 0;
 		this.statusLine = "Sudoku Puzzle loaded";

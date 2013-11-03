@@ -1,7 +1,6 @@
 package de.htwg.sudoku.model;
 
 import java.util.BitSet;
-import java.util.UUID;
 
 public interface IGrid {
 
@@ -91,5 +90,10 @@ public interface IGrid {
 	/**
 	 * @return An unique ID for this grid
 	 */
-	UUID getId();
+	String getId();
+	
+	/**
+	 * @return An unique ID for this grid
+	 */
+	void setId(String id);
 }

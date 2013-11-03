@@ -2,8 +2,6 @@ package de.htwg.sudoku.controller;
 
 import de.htwg.sudoku.model.IGrid;
 
-import java.util.UUID;
-
 import de.htwg.util.observer.IObservable;
 
 public interface ISudokuController extends IObservable {
@@ -172,7 +170,7 @@ public interface ISudokuController extends IObservable {
 	 * Load a grid from the database
 	 * @param gridId
 	 */
-	void loadFromDB(UUID gridId);
+	void loadFromDB(String gridId);
 	
 	/**
 	 * Save a grid to the database

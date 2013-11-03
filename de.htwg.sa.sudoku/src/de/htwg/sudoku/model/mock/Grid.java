@@ -121,7 +121,10 @@ public class Grid extends AbstractGrid{
 	public void setName(String name) {}
 
 	@Override
-	public UUID getId() {
-		return UUID.randomUUID();
+	public String getId() {
+		return UUID.randomUUID().toString();
 	}
+
+	@Override
+	public void setId(String id) {}
 }
