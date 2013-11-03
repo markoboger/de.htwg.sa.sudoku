@@ -282,4 +282,9 @@ public class SudokuController extends Observable implements ISudokuController {
 		return gridDAO.containsGridById(grid.getId());
 
 	}
+
+	@Override
+	public void deleteFromDB(String id) {
+		gridDAO.deleteGridById(id);		
+	}
 }

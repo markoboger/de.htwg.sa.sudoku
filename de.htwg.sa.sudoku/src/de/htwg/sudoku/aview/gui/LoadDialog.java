@@ -86,6 +86,23 @@ public class LoadDialog extends JDialog {
 
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10,
 				10));
+		JButton deleteButton = new JButton("Delete");
+		deleteButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				int rowIdx = LoadDialog.this.table.getSelectedRow();
+				if (rowIdx == -1) {
+					JOptionPane.showMessageDialog(LoadDialog.this,
+							"Please choose an entry first.");
+					return;
+				}
+				String id = (String) LoadDialog.this.rowData[rowIdx][2];
+				controller.deleteFromDB(id);
+				LoadDialog.this.updateTable();
+			}
+		});
+		buttonPanel.add(deleteButton);		
+		
 		JButton loadButton = new JButton("Load");
 		loadButton.addActionListener(new ActionListener() {
 			@Override

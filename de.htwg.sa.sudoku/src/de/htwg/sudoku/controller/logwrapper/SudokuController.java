@@ -273,4 +273,11 @@ public class SudokuController implements IObservable, ISudokuController {
 		return realController.containsActualGridDB();
 	}
 
+	@Override
+	public void deleteFromDB(String id) {
+		pre();
+		realController.deleteFromDB(id);
+		post();
+	}
+
 }

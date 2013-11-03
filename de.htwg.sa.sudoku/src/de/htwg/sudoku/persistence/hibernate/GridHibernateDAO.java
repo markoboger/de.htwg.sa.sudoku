@@ -157,7 +157,12 @@ public class GridHibernateDAO implements IGridDAO {
 			session = HibernateUtil.getInstance().getCurrentSession();
 			tx = session.beginTransaction();
 			
-			session.delete(session.get(PersistentGrid.class, id));
+			PersistentGrid pgrid = (PersistentGrid) session.get(PersistentGrid.class, id);
+			
+			for(PersistentCell c : pgrid.getCells()) {
+				session.delete(c);
+			}
+			session.delete(pgrid);
 
 			tx.commit();
 		} catch (HibernateException ex) {

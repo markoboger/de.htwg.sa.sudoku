@@ -9,7 +9,7 @@
       <property name="connection.username">root</property>
       <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
       <property name="current_session_context_class">thread</property>
-      <property name="hibernate.hbm2ddl.auto">create-drop</property>
+      <property name="hibernate.hbm2ddl.auto">update</property>
       <property name="show_sql">false</property>
       <mapping class="de.htwg.sudoku.persistence.hibernate.PersistentCell" />
       <mapping class="de.htwg.sudoku.persistence.hibernate.PersistentGrid" />
