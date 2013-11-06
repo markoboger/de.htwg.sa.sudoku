@@ -13,7 +13,6 @@ import org.ektorp.ViewResult.Row;
 import org.ektorp.http.HttpClient;
 import org.ektorp.http.StdHttpClient;
 import org.ektorp.impl.StdCouchDbInstance;
-import org.ektorp.support.Revisions;
 
 import de.htwg.sudoku.model.ICell;
 import de.htwg.sudoku.model.IGrid;
@@ -169,6 +168,7 @@ public class PersistentGridCouchdbDAO implements IGridDAO {
 
 	}
 
+	@SuppressWarnings("unused")
 	private void deleteAll() {
 		List<String> l = db.getAllDocIds();
 		for (String id : l) {

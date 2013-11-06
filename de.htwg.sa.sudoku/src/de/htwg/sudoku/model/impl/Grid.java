@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
-import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.annotate.JsonTypeName;
 
 import de.htwg.sudoku.model.AbstractGrid;
