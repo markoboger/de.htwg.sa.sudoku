@@ -7,12 +7,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
-import org.codehaus.jackson.annotate.JsonTypeName;
-
 import de.htwg.sudoku.model.AbstractGrid;
 import de.htwg.sudoku.model.ICell;
 
-@JsonTypeName("grid")
 public class Grid extends AbstractGrid {
 
 	private Cell[][] cells;

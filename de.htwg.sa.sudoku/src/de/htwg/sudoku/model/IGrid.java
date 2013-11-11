@@ -2,17 +2,6 @@ package de.htwg.sudoku.model;
 
 import java.util.BitSet;
 
-import org.codehaus.jackson.annotate.JsonProperty;
-import org.codehaus.jackson.annotate.JsonSubTypes;
-import org.codehaus.jackson.annotate.JsonTypeInfo;
-import org.codehaus.jackson.annotate.JsonTypeInfo.As;
-
-@JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include=As.WRAPPER_OBJECT, property="type")
-@JsonSubTypes({
-
-    @JsonSubTypes.Type(value=AbstractGrid.class, name="AbstractGrid")
-
-})
 public interface IGrid {
 
 	/**
@@ -101,7 +90,6 @@ public interface IGrid {
 	/**
 	 * @return An unique ID for this grid
 	 */
-	@JsonProperty("_id")
 	String getId();
 	
 	/**

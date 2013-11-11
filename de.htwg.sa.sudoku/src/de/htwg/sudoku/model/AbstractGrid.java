@@ -1,17 +1,6 @@
 package de.htwg.sudoku.model;
 
-import org.codehaus.jackson.annotate.JsonSubTypes;
-import org.codehaus.jackson.annotate.JsonTypeInfo;
-import org.codehaus.jackson.annotate.JsonTypeInfo.As;
 
-import de.htwg.sudoku.model.impl.Grid;
-
-@JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include=As.WRAPPER_OBJECT, property="type")
-@JsonSubTypes({
-
-    @JsonSubTypes.Type(value=Grid.class, name="Grid")
-
-})
 public abstract class AbstractGrid implements IGrid {
 
 	private int cellsPerEdge;
