@@ -150,8 +150,6 @@ public class GridCouchdbDAO implements IGridDAO {
 
 	@Override
 	public List<IGrid> getAllGrids() {
-//		 deleteAll();
-//		 return null;
 		List<IGrid> lst = new ArrayList<IGrid>();
 		ViewQuery query = new ViewQuery().allDocs();
 		ViewResult vr = db.queryView(query);
