@@ -93,6 +93,11 @@
       <artifactId>org.ektorp</artifactId>
       <version>1.2.2</version>
     </dependency>
+    <dependency>
+	  <groupId>org.json</groupId>
+	  <artifactId>json</artifactId>
+	  <version>20131018</version>
+    </dependency>
   </dependencies>
   
   <!-- Additional Remote Repositories -->

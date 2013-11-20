@@ -11,6 +11,15 @@ import java.util.List;
 
 import javax.swing.undo.UndoManager;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
@@ -34,7 +43,7 @@ public class SudokuController extends Observable implements ISudokuController {
 	private int highlighted=0;
 	private static final int NORMALGRID=3;
 	private IGridDAO gridDAO;
-
+	
 	@Inject
 	public SudokuController(IGridFactory gridFactory, IGridDAO gridDAO) {
 		this.gridFactory=gridFactory;
@@ -286,5 +295,38 @@ public class SudokuController extends Observable implements ISudokuController {
 	@Override
 	public void deleteFromDB(String id) {
 		gridDAO.deleteGridById(id);		
+	}
+
+	@Override
+	public JSONObject getHighscores() {
+		HttpClient client = new DefaultHttpClient();
+		HttpGet request = new HttpGet("http://localhost:9000");
+		
+		try {
+			HttpResponse response = client.execute(request);
+			JSONTokener tokener = new JSONTokener(response.getEntity().getContent());
+			return new JSONObject(tokener);
+			
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	@Override
+	public void addHighscore(String player, long score) {
+		HttpClient client = new DefaultHttpClient();
+		HttpPost post = new HttpPost("http://localhost:9000?game=Sudoku&player=" + player + "&score=" + score);
+		try {
+			client.execute(post);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

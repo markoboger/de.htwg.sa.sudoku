@@ -1,6 +1,7 @@
 package de.htwg.sudoku.controller.logwrapper;
 
 import org.apache.log4j.Logger;
+import org.json.JSONObject;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -278,6 +279,18 @@ public class SudokuController implements IObservable, ISudokuController {
 		pre();
 		realController.deleteFromDB(id);
 		post();
+	}
+
+	@Override
+	public JSONObject getHighscores() {
+		return realController.getHighscores();
+	}
+
+	@Override
+	public void addHighscore(String player, long score) {
+		pre();
+		realController.addHighscore(player, score);
+		post();		
 	}
 
 }

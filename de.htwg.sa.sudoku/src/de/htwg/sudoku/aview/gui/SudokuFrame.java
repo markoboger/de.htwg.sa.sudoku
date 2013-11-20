@@ -53,7 +53,7 @@ public class SudokuFrame extends JFrame implements IObserver {
 		JMenuBar menuBar;
 
 		JMenu fileMenu;
-		JMenuItem newMenuItem, loadMenuItem, saveMenuItem, saveToDBMenuItem, loadFromDBMenuItem, quitMenuItem;
+		JMenuItem newMenuItem, loadMenuItem, saveMenuItem, saveToDBMenuItem, loadFromDBMenuItem, showHighscoreItem, quitMenuItem;
 
 		JMenu editMenu;
 		JMenuItem undoMenuItem, redoMenuItem, copyMenuItem, pasteMenuItem;
@@ -137,6 +137,16 @@ public class SudokuFrame extends JFrame implements IObserver {
 			}
 		});
 		fileMenu.add(loadFromDBMenuItem);
+		
+		fileMenu.addSeparator();
+		
+		showHighscoreItem = new JMenuItem("Show Highscores");
+		showHighscoreItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				new HighscoreDialog(controller);
+			}
+		});
+		fileMenu.add(showHighscoreItem);
 		
 		fileMenu.addSeparator();
 

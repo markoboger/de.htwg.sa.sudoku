@@ -1,5 +1,7 @@
 package de.htwg.sudoku.controller;
 
+import org.json.JSONObject;
+
 import de.htwg.sudoku.model.IGrid;
 import de.htwg.util.observer.IObservable;
 
@@ -219,4 +221,7 @@ public interface ISudokuController extends IObservable {
 	void setStatusLine(String string);
 
 	void deleteFromDB(String id);
+	
+	JSONObject getHighscores();
+	void addHighscore(String player, long score);
 }
