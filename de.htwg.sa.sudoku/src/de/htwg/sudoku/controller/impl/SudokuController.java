@@ -321,7 +321,7 @@ public class SudokuController extends Observable implements ISudokuController {
 	@Override
 	public void addHighscore(String player, long score) {
 		HttpClient client = new DefaultHttpClient();
-		HttpPost post = new HttpPost("http://localhost:9000?game=Sudoku&player=" + player + "&score=" + score);
+		HttpPost post = new HttpPost("http://localhost:9000/addHighscore?game=Sudoku&player=" + player + "&score=" + score);
 		try {
 			client.execute(post);
 		} catch (IOException e) {
