@@ -96,4 +96,6 @@ public interface IGrid {
 	 * @return An unique ID for this grid
 	 */
 	void setId(String id);
+
+	boolean isSolved();
 }
