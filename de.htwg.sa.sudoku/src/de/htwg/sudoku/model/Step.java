@@ -6,7 +6,7 @@ public class Step {
 	private int column;
 	private int value;
 
-	public Step(int row, int column, int value) {
+	public Step(int row, int column, int value, String reason) {
 		this.setRow(row);
 		this.setColumn(column);
 		this.setValue(value);

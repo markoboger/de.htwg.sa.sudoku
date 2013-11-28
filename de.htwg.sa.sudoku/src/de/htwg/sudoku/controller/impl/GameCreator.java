@@ -11,12 +11,21 @@ import de.htwg.sudoku.solverplugin.SolverPlugin;
 
 public class GameCreator {
 	
+	private ISudokuController controller;
+	private Set<SolverPlugin> plugins;
+	
 	@Inject
-	public static boolean findHardGame(ISudokuController controller, Set<SolverPlugin> plugins) {
+	public GameCreator(ISudokuController controller, Set<SolverPlugin> plugins) {
+		this.controller = controller;
+		this.plugins = plugins;
+	}
+	
+	public  boolean findHardGame() {
 		boolean hardGameFound = false;
 		Step nextStep = null;
 		while (!hardGameFound) {
 			controller.create();
+			controller.copy();
 			boolean gameSolved=false;
 			while(!gameSolved) {
 				Iterator<SolverPlugin> iter = plugins.iterator();
@@ -34,6 +43,7 @@ public class GameCreator {
 			}
 			
 		}
+		controller.paste();
 		return hardGameFound;
 	}
 

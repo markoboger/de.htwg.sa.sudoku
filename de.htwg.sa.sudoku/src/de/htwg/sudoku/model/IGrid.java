@@ -98,4 +98,6 @@ public interface IGrid {
 	void setId(String id);
 
 	boolean isSolved();
+	
+	boolean isSymmetric();
 }

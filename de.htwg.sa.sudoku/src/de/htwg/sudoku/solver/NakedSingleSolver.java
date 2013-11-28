@@ -21,9 +21,10 @@ public class NakedSingleSolver implements SolverPlugin {
 					int candidate = grid.candidates(row, column).nextSetBit(0);
 					grid.getICell(row, column).setShowCandidates(true);
 					grid.getICell(row, column).setHint(true);
-					controller.setStatusLine("Found Naked Single for " + candidate + " at (" + row + "," + column + ")");
+					String reason = "Found Naked Single for " + candidate + " at (" + row + "," + column + ")";
+					controller.setStatusLine(reason);
 					controller.notifyObservers();
-					return new Step(row, column, candidate);
+					return new Step(row, column, candidate, reason);
 				}
 			}
 		}
