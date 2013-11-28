@@ -209,4 +209,12 @@ public class GridTest {
 		return true;	
 	}
 	
+	@Test
+	public void testCreateSymmetricGrid() {
+		grid3.create();
+		assertTrue(grid3.isSymmetric());
+		System.out.println(grid3.toString());
+	}
+
+	
 }
