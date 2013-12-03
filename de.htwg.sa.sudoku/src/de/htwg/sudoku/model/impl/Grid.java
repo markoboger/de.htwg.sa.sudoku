@@ -14,9 +14,21 @@ public class Grid extends AbstractGrid {
 
 	private Cell[][] cells;
 	private House[] rows;
+	public House[] getRows() {
+		return rows;
+	}
+
 	private House[] columns;
+	public House[] getColumns() {
+		return columns;
+	}
+
 	private House[] blocks;
 	
+	public House[] getBlocks() {
+		return blocks;
+	}
+
 	private String name;
 	private String id;
 

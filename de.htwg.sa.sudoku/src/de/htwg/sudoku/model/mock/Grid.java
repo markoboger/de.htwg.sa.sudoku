@@ -127,4 +127,23 @@ public class Grid extends AbstractGrid{
 
 	@Override
 	public void setId(String id) {}
+
+	@Override
+	public House[] getRows() {
+		return rows;
+	}
+
+	@Override
+	public House[] getColumns() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public House[] getBlocks() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 }

@@ -2,6 +2,8 @@ package de.htwg.sudoku.model;
 
 import java.util.BitSet;
 
+import de.htwg.sudoku.model.impl.House;
+
 public interface IGrid {
 
 	/**
@@ -34,6 +36,10 @@ public interface IGrid {
      * @return an index value between 0 and the number of blocks.
      */
     int blockAt(int row, int column);
+    
+    House[] getRows();
+    House[] getColumns();
+    House[] getBlocks();
 
 	/**
 	 * @return the number of steps that were used in the last solve run.

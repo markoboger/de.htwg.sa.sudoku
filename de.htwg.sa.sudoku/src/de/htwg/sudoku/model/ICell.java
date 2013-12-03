@@ -8,6 +8,9 @@ public interface ICell {
 	 * @param value
 	 */
 	void setValue(int value);
+	
+	int getRow();
+	int getColumn();
 
 	/**
 	 * @return a rich textual representation. This is intended for status line of debug, not for the grid.
