@@ -1,7 +1,6 @@
 package de.htwg.sudoku.persistence.couchdb;
 
 import org.ektorp.support.CouchDbDocument;
-import org.ektorp.support.TypeDiscriminator;
 
 public class PersistentCell extends CouchDbDocument {
 
@@ -10,11 +9,6 @@ public class PersistentCell extends CouchDbDocument {
 	 */
 	private static final long serialVersionUID = -6049548436571017626L;
 
-	/**
-	 * @TypeDiscriminator is used to mark properties that makes this class's
-	 *                    documents unique in the database.
-	 */
-	@TypeDiscriminator
 	public String id;
 
 	public Integer value = 0;
