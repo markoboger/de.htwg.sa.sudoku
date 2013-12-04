@@ -219,4 +219,6 @@ public interface ISudokuController extends IObservable {
 	void setStatusLine(String string);
 
 	void deleteFromDB(String id);
+
+	boolean isSolved();
 }

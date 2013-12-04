@@ -62,6 +62,7 @@ public abstract class AbstractGrid implements IGrid {
 	public String toString() {
 		return toString(" ");
 	}
+	
 	public String toString(String zero) {
 		String newLine = System.getProperty("line.separator");
 		String result = blockSeparator(blockSize) + newLine;
@@ -76,5 +77,6 @@ public abstract class AbstractGrid implements IGrid {
 	}
 
 	protected abstract AbstractHouse getRow(int row); 
-
+	
+	
 }
