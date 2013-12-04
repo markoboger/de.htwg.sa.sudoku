@@ -24,10 +24,10 @@ public class HiddenSingleSolver implements SolverPlugin {
 				for (int column = 0; column < controller.getCellsPerRow(); column++) {
 					if (!grid.getICell(row, column).isSet() && grid.candidates(row, column).get(value) == true) {
 						hiddenval = value;
+						counter++;
 						if (counter == 1) { 
 							hiddencol = column;
 						}
-						counter++;
 					}
 				}
 				if (counter == 1) {
