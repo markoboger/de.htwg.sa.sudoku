@@ -2,14 +2,14 @@ package de.htwg.sudoku.persistence.couchdb;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.ektorp.CouchDbConnector;
 import org.ektorp.CouchDbInstance;
 import org.ektorp.Revision;
 import org.ektorp.ViewQuery;
-import org.ektorp.ViewResult;
-import org.ektorp.ViewResult.Row;
 import org.ektorp.http.HttpClient;
 import org.ektorp.http.StdHttpClient;
 import org.ektorp.impl.StdCouchDbInstance;
@@ -22,7 +22,7 @@ import de.htwg.sudoku.persistence.IGridDAO;
 public class GridCouchdbDAO implements IGridDAO {
 
 	private CouchDbConnector db = null;
-
+	
 	public GridCouchdbDAO() {
 		HttpClient client = null;
 		try {
@@ -34,6 +34,7 @@ public class GridCouchdbDAO implements IGridDAO {
 		}
 		CouchDbInstance dbInstance = new StdCouchDbInstance(client);
 		db = dbInstance.createConnector("sudoku_db", true);
+		db.createDatabaseIfNotExists();
 	}
 
 	private IGrid copyGrid(PersistentGrid pgrid) {
@@ -70,7 +71,7 @@ public class GridCouchdbDAO implements IGridDAO {
 			pgrid = (PersistentGrid) db.find(PersistentGrid.class, gridId);
 
 			// Synchronize values
-			List<PersistentCell> cells = pgrid.getCells();
+			Set<PersistentCell> cells = pgrid.getCells();
 			for (PersistentCell c : cells) {
 				int col = c.getColumn();
 				int row = c.getRow();
@@ -81,7 +82,7 @@ public class GridCouchdbDAO implements IGridDAO {
 			// A new database entry
 			pgrid = new PersistentGrid();
 
-			List<PersistentCell> cells = new ArrayList<PersistentCell>();
+			Set<PersistentCell> cells = new HashSet<PersistentCell>();
 
 			for (int column = 0; column < Math.pow(grid.getBlockSize(), 2); column++) {
 				for (int row = 0; row < Math.pow(grid.getBlockSize(), 2); row++) {
@@ -150,23 +151,27 @@ public class GridCouchdbDAO implements IGridDAO {
 
 	@Override
 	public List<IGrid> getAllGrids() {
+		ViewQuery q = new ViewQuery().allDocs().includeDocs(true);
+				
 		List<IGrid> lst = new ArrayList<IGrid>();
-		ViewQuery query = new ViewQuery().allDocs();
-		ViewResult vr = db.queryView(query);
-
-		for (Row r : vr.getRows()) {
-			lst.add(getGridById(r.getId()));
+		for (PersistentGrid pGrid : db.queryView(q, PersistentGrid.class)) {
+			lst.add(copyGrid(pGrid));
 		}
+
 		return lst;
 	}
 
 	@Override
 	public void generateGrids(int number, int gridSize) {
+		List<PersistentGrid> pgridList = new ArrayList<PersistentGrid>();
+		
 		for (int i = 0; i < number; i++) {
 			IGrid grid = new Grid(gridSize);
 			grid.create();
-			saveGrid(grid);
+			pgridList.add(copyGrid(grid));
 		}
+		
+		db.executeBulk(pgridList);
 	}
 
 	@SuppressWarnings("unused")

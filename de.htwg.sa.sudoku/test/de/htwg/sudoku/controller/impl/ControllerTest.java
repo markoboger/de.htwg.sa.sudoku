@@ -14,8 +14,8 @@ import de.htwg.sudoku.persistence.db4o.GridDb4oDAO;
 public class ControllerTest {
 	String newLine = System.getProperty("line.separator");
 
-	private IGrid grid1;
-	SudokuController controller1;
+	private IGrid grid1,grid3;
+	SudokuController controller1,controller3;
 	GridFactory gridFactory;
 	private GridDb4oDAO db4oDao;
 	
@@ -25,7 +25,9 @@ public class ControllerTest {
 	    db4oDao = new GridDb4oDAO();
 		controller1 = new SudokuController(gridFactory,  db4oDao);
 		controller1.resetSize(1);
-		grid1= controller1.getGrid();
+		controller3 = new SudokuController(gridFactory,  db4oDao);
+		controller3.resetSize(3);
+		grid3= controller3.getGrid();
 	}
 	
 	@After
@@ -122,6 +124,18 @@ public class ControllerTest {
 		assertEquals(1,controller1.getValue(0, 0));
 	}
 	
-	
+	@Test
+	public void testCopyPaste() {
+		controller3.create();
+		String orig = controller3.getGrid().toString();
+		controller3.copy();
+		controller3.create();
+		controller3.paste();
+		String copy = controller3.getGrid().toString();
+		assertEquals(orig,copy);
+		
+		
+		
+	}
 
 }
