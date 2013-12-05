@@ -11,12 +11,12 @@ public class GameCreator {
 			boolean gameSolved=false;
 			while(!gameSolved) {
 				if (controller.findSolveStep()) { 
-					controller.doSolveStep()
+					controller.doSolveStep();
 				} else {
 					hardGameFound = true;
 					return hardGameFound;
 				}
-				gameSolved=controller.isSolved()
+				gameSolved=controller.isSolved();
 			}
 			
 		}

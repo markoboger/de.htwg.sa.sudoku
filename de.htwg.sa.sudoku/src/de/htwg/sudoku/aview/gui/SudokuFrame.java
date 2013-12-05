@@ -237,7 +237,7 @@ public class SudokuFrame extends JFrame implements IObserver {
 			pluginMenuItem = new JMenuItem(plugin.getSolverName());
 			pluginMenuItem.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					plugin.solve(controller);
+					plugin.solveStep(controller);
 				}
 			});
 			solveMenu.add(pluginMenuItem);

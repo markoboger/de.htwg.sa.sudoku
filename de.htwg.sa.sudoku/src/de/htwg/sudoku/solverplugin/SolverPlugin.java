@@ -6,6 +6,6 @@ public interface SolverPlugin {
 	
 	String getSolverName();
 	
-	boolean solve(ISudokuController controller);
+	boolean solveStep(ISudokuController controller);
 
 }

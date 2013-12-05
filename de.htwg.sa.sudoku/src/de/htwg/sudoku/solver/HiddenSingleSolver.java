@@ -11,7 +11,7 @@ public class HiddenSingleSolver implements SolverPlugin {
 	}
 
 	@Override
-	public boolean solve(ISudokuController controller) {
+	public boolean solveStep(ISudokuController controller) {
 		// TODO Auto-generated method stub
 		return false;
 	}

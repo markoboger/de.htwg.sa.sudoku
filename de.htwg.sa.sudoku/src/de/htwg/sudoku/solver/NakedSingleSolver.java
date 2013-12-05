@@ -12,7 +12,7 @@ public class NakedSingleSolver implements SolverPlugin {
 	}
 
 	@Override
-	public boolean solve(ISudokuController controller) {
+	public boolean solveStep(ISudokuController controller) {
 		IGrid grid = controller.getGrid();
 		for (int row = 0; row < grid.getCellsPerEdge(); row++) {
 			for (int column = 0; column < grid.getCellsPerEdge(); column++) {
