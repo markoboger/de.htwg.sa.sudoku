@@ -37,8 +37,10 @@ public class GameCreator {
 				if (nextStep!=null) { 
 					controller.setValue(nextStep.getRow(), nextStep.getColumn(), nextStep.getValue());
 				} else {
+					if (controller.getGrid().isSymmetric()){System.out.println("Grid is symmetric");}
 					hardGameFound = true;
 					return hardGameFound;
+					
 				}
 				gameSolved=controller.isSolved();
 			}
