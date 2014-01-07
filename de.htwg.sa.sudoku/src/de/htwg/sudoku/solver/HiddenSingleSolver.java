@@ -13,7 +13,9 @@ public class HiddenSingleSolver implements SolverPlugin {
 	}
 
 	@Override
+
 	public Step solveStep(ISudokuController controller) {
+
 		IGrid grid = controller.getGrid();
 		for (int row = 0; row < controller.getCellsPerRow(); row++) {
 			for (int value = 1; value <= controller.getCellsPerRow(); value++) {
@@ -40,6 +42,7 @@ public class HiddenSingleSolver implements SolverPlugin {
 		}
 		controller.setStatusLine("No Hidden Singles found");
 		controller.notifyObservers();
+
 		return null;
 
 	}

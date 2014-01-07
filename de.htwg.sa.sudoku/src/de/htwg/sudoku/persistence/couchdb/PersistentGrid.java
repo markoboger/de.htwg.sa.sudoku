@@ -1,6 +1,6 @@
 package de.htwg.sudoku.persistence.couchdb;
 
-import java.util.List;
+import java.util.Set;
 
 import org.ektorp.support.CouchDbDocument;
 import org.ektorp.support.TypeDiscriminator;
@@ -16,7 +16,7 @@ public class PersistentGrid extends CouchDbDocument {
 	@TypeDiscriminator
 	private String id;
 
-	private List<PersistentCell> cells;
+	private Set<PersistentCell> cells;
 
 	private String name;
 	private int blocksPerEdge;
@@ -33,11 +33,11 @@ public class PersistentGrid extends CouchDbDocument {
 		this.id = id;
 	}
 
-	public List<PersistentCell> getCells() {
+	public Set<PersistentCell> getCells() {
 		return cells;
 	}
 
-	public void setCells(List<PersistentCell> cells) {
+	public void setCells(Set<PersistentCell> cells) {
 		this.cells = cells;
 	}
 

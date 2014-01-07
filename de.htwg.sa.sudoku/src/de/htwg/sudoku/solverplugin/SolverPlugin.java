@@ -7,6 +7,7 @@ public interface SolverPlugin {
 	
 	String getSolverName();
 	
+
 	Step solveStep(ISudokuController controller);
 
 }
