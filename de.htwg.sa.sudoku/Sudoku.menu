@@ -1,0 +1,110 @@
+MenuBar for Sudoku {
+	menu File {
+		mnemonic "F"
+		menuItem "NewSudoku" {
+			mnemonic "N"
+			action "controller.create()"
+		}
+		menuItem "Save" {
+			mnemonic "S"
+			action "save(frame)"
+		}
+		menuItem "Load" {
+			mnemonic "L"
+			action "load(frame)"
+		}
+		menuItem "Save to DB" {
+			action "new SaveDialog(frame,controller)"
+		}
+		menuItem "Load from DB" {
+			action "new LoadDialog(controller)"
+		}
+		menuItem "Exit" {
+			mnemonic "X"
+			action "controller.exit()"
+		}
+		
+	}
+	
+	menu Edit {
+		mnemonic "E"
+		menuItem "Undo" {
+			mnemonic "U"
+			hotkey "Z"
+			action "controller.undo()"
+		}
+		menuItem "Redo" {
+			mnemonic "R"
+			hotkey "Y"
+			action "controller.redo()"
+		}
+		menuItem "Copy"{
+			mnemonic "C"
+			hotkey "C"
+			action "controller.copy()"
+		}
+		menuItem "Paste"{
+			mnemonic "P"
+			hotkey "V"
+			action "controller.paste()"
+		}
+	}
+	
+	menu Solve {
+		mnemonic "S"
+		menuItem "Solve Now" {
+			action "controller.solve()"
+		}
+	}
+	menu Highlight {
+		mnemonic "H"
+		menuItem "None" {
+			action "controller.highlight(0)"
+		}
+		menuItem "1" {
+			action "controller.highlight(1)"
+		}
+		menuItem "2" {
+			action "controller.highlight(2)"
+		}
+		menuItem "3" {
+			action "controller.highlight(3)"
+		}
+		menuItem "4" {
+			action "controller.highlight(4)"
+		}
+		menuItem "5" {
+			action "controller.highlight(5)"
+		}
+		menuItem "6" {
+			action "controller.highlight(6)"
+		}
+		menuItem "7" {
+			action "controller.highlight(7)"
+		}
+		menuItem "8" {
+			action "controller.highlight(8)"
+		}
+		menuItem "9" {
+			action "controller.highlight(9)"
+		}
+	}
+	menu Options {
+		mnemonic "O"
+		menuItem "Toggle Show Candidates" {
+			action "controller.showAllCandidates()"
+		}
+		menuItem "Resize to 9 by 9" {
+			mnemonic "NUMBER_SIGN"
+			action "controller.resetSize(3)"
+		}
+		menuItem "Resize to 4 by 4" {
+			mnemonic "PLUS"
+			action "controller.resetSize(2)"
+		}
+		menuItem "Resize to 1 by 1" {
+			mnemonic "PERIOD"
+			action "controller.resetSize(1)"
+		}
+	}
+}
