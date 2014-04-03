@@ -73,7 +73,7 @@ public class ControllerTest {
 	
 	@Test
 	public void testX() {
-		
+		grid3.isSolved();
 	}
 	@Test
 	public void testGetCellsPerEdge() {
