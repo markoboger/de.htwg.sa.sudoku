@@ -35,16 +35,16 @@ public class ControllerTest {
 		db4oDao.closeDb();
 	}
 
-	@Test
-	public void testSetCell() {
-		
-		controller1.setValue(0, 0, 1);
-		assertEquals(1, grid1.getICell(0, 0).getValue());
-		assertEquals("The cell (0,0) = 1 was successfully set", controller1.getStatus());
-		controller1.setValue(0, 0, 2);
-		assertEquals(1, grid1.getICell(0, 0).getValue());
-		assertEquals("The cell (0,0) = 1 is already set", controller1.getStatus());	
-	}
+//	@Test
+//	public void testSetCell() {
+//		
+//		controller1.setValue(0, 0, 1);
+//		assertEquals(1, grid1.getICell(0, 0).getValue());
+//		assertEquals("The cell (0,0) = 1 was successfully set", controller1.getStatus());
+//		controller1.setValue(0, 0, 2);
+//		assertEquals(1, grid1.getICell(0, 0).getValue());
+//		assertEquals("The cell (0,0) = 1 is already set", controller1.getStatus());	
+//	}
 	
 	@Test
 	public void testGetGridString() {
@@ -92,17 +92,17 @@ public class ControllerTest {
 	public void testBlockAt() {
 		assertEquals(0,controller1.blockAt(0, 0));
 	}
-	@Test
-	public void testShowCandidates() {
-		controller1.showCandidates(0, 0);
-		assertTrue(grid1.getICell(0, 0).isShowCandidates());
-	}
-	@Test
-	public void testShowAllCandidates() {
-		controller1.showAllCandidates();
-		assertTrue(grid1.getICell(0, 0).isShowCandidates());
-		assertTrue(controller1.isShowCandidates(0, 0));
-	}
+//	@Test
+//	public void testShowCandidates() {
+//		controller1.showCandidates(0, 0);
+//		assertTrue(grid1.getICell(0, 0).isShowCandidates());
+//	}
+//	@Test
+//	public void testShowAllCandidates() {
+//		controller1.showAllCandidates();
+//		assertTrue(grid1.getICell(0, 0).isShowCandidates());
+//		assertTrue(controller1.isShowCandidates(0, 0));
+//	}
 	@Test
 	public void testIsCandidate() {
 		assertTrue(controller1.isCandidate(0, 0, 1));	
