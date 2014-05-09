@@ -156,70 +156,80 @@ public class SudokuMenu {
 		item_none = new JMenuItem("None");
 		item_none.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.highlight(0);
+			    final int DIGIT=0;
+				controller.highlight(DIGIT);
 			}
 		});
 		highlight.add(item_none);
 		item_1 = new JMenuItem("1");
 		item_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.highlight(1);
+			    final int DIGIT=1;
+                controller.highlight(DIGIT);
 			}
 		});
 		highlight.add(item_1);
 		item_2 = new JMenuItem("2");
 		item_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.highlight(2);
+			    final int DIGIT=2;
+                controller.highlight(DIGIT);
 			}
 		});
 		highlight.add(item_2);
 		item_3 = new JMenuItem("3");
 		item_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.highlight(3);
+			    final int DIGIT=3;
+                controller.highlight(DIGIT);
 			}
 		});
 		highlight.add(item_3);
 		item_4 = new JMenuItem("4");
 		item_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.highlight(4);
+			    final int DIGIT=4;
+                controller.highlight(DIGIT);
 			}
 		});
 		highlight.add(item_4);
 		item_5 = new JMenuItem("5");
 		item_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.highlight(5);
+			    final int DIGIT=5;
+                controller.highlight(DIGIT);
 			}
 		});
 		highlight.add(item_5);
 		item_6 = new JMenuItem("6");
 		item_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.highlight(6);
+			    final int DIGIT=6;
+                controller.highlight(DIGIT);
 			}
 		});
 		highlight.add(item_6);
 		item_7 = new JMenuItem("7");
 		item_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.highlight(7);
+			    final int DIGIT=7;
+                controller.highlight(DIGIT);
 			}
 		});
 		highlight.add(item_7);
 		item_8 = new JMenuItem("8");
 		item_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.highlight(8);
+			    final int DIGIT=8;
+                controller.highlight(DIGIT);
 			}
 		});
 		highlight.add(item_8);
 		item_9 = new JMenuItem("9");
 		item_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.highlight(9);
+			    final int DIGIT=9;
+                controller.highlight(DIGIT);
 			}
 		});
 		highlight.add(item_9);

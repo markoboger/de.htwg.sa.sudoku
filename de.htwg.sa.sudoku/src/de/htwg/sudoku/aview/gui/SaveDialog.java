@@ -25,6 +25,7 @@ class SaveDialog extends JDialog implements ActionListener,
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static final int BUTTONS=10;
 
 	private ISudokuController controller;
 	private JTextField textField;
@@ -42,9 +43,9 @@ class SaveDialog extends JDialog implements ActionListener,
 
 		setTitle("Save game...");
 
-		JPanel contentPanel = new JPanel(new FlowLayout(10));
+		JPanel contentPanel = new JPanel(new FlowLayout(BUTTONS));
 		contentPanel.add(new JLabel("Name:"));
-		textField = new JTextField(10);
+		textField = new JTextField(BUTTONS);
 		textField.setText(controller.getGridName());
 		contentPanel.add(textField);
 		
