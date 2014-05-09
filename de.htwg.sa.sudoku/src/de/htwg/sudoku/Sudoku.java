@@ -41,14 +41,6 @@ public final class Sudoku {
 		// Create an initial game
 		controller.create();
 	}
-	
-	public ISudokuController getController(){
-		return controller;
-	}
-	
-	public TextUI getTUI(){
-		return tui;
-	}
 
 	public static void main(String[] args) {
 		

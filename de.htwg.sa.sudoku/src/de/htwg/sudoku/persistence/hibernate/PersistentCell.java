@@ -33,7 +33,7 @@ public class PersistentCell implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "gridid")
-	public PersistentGrid grid;
+	private PersistentGrid grid;
 	
 	
 

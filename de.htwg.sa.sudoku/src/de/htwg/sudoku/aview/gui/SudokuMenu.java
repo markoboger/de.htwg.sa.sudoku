@@ -33,24 +33,26 @@ public class SudokuMenu {
 		this.frame = frame;
 		this.controller = controller;
 	}
-	private JMenu file ;
-	private JMenuItem  itemNewSudoku, itemSave, itemLoad, itemSaveToDB, itemLoadFromDB, itemExit ; 
-	
-	private JMenu edit ;
-	private JMenuItem  itemUndo, itemRedo, itemCopy, itemPaste ; 
-	
-	private JMenu solve ;
-	private JMenuItem  itemSolveNow ; 
-	
-	private JMenu highlight ;
-	private JMenuItem  itemNone, item1, item2, item3, item4, item5, item6, item7, item8, item9 ; 
-	
-	private JMenu options ;
-	private JMenuItem  itemToggleShowCandidates, itemResizeTo9by9, itemResizeTo4by4, itemResizeTo1by1 ; 
-	
+
 	
 	
 	public JMenuBar buildMenuBar() {
+	    
+	    JMenu file ;
+	    JMenuItem  itemNewSudoku, itemSave, itemLoad, itemSaveToDB, itemLoadFromDB, itemExit ; 
+	    
+	    JMenu edit ;
+	    JMenuItem  itemUndo, itemRedo, itemCopy, itemPaste ; 
+	    
+	    JMenu solve ;
+	    JMenuItem  itemSolveNow ; 
+	    
+	    JMenu highlight ;
+	    JMenuItem  itemNone, item1, item2, item3, item4, item5, item6, item7, item8, item9 ; 
+	    
+	    JMenu options ;
+	    JMenuItem  itemToggleShowCandidates, itemResizeTo9by9, itemResizeTo4by4, itemResizeTo1by1 ; 
+	    
 		JMenuBar menuBar = new JMenuBar();
 		file = new JMenu("File ");
 		file.setMnemonic(KeyEvent.VK_F); 

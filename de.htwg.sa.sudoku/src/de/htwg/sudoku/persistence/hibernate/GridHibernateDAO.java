@@ -170,10 +170,7 @@ public class GridHibernateDAO implements IGridDAO {
 			if (tx != null) {
 				tx.rollback();
 		    }
-			throw new RuntimeException(ex.getMessage());
-
 		}
-
 	}
 
 	@Override
