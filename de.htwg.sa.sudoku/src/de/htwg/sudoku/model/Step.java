@@ -7,9 +7,9 @@ public class Step {
 	private int value;
 
 	public Step(int row, int column, int value, String reason) {
-		this.setRow(row);
-		this.setColumn(column);
-		this.setValue(value);
+		this.row = row;
+		this.column = column;
+		this.value = value;
 	}
 
 	public int getRow() {
