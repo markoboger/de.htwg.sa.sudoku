@@ -46,8 +46,9 @@ public class PersistentGrid extends CouchDbDocument {
 	}
 
 	public void setName(String name) {
-		if (name != null)
+		if (name != null) {
 			this.name = name;
+		}
 	}
 
 	public int getBlocksPerEdge() {

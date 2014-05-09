@@ -51,7 +51,7 @@ public class PersistentGrid implements Serializable {
 	}
 
 	public void setName(String name) {
-		if(name != null) this.name = name;
+		if(name != null) { this.name = name;}
 	}
 	
 	public int getBlocksPerEdge() {

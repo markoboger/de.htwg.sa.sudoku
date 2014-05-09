@@ -9,13 +9,13 @@ public class PersistentCell extends CouchDbDocument {
 	 */
 	private static final long serialVersionUID = -6049548436571017626L;
 
-	public String id;
+	private String id;
 
-	public Integer value = 0;
-	public Integer row = 0;
-	public Integer column = 0;
+	private Integer value = 0;
+	private Integer row = 0;
+	private Integer column = 0;
 
-	public Boolean given = false;
+	private Boolean given = false;
 
 	public PersistentCell(Integer column, Integer row) {
 		this.column = column;

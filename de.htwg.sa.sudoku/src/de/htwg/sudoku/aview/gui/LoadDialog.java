@@ -62,7 +62,8 @@ public class LoadDialog extends JDialog {
 		genButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				controller.generateGridToDB(20);
+			    final int numberOfGrids=20;
+				controller.generateGridToDB(numberOfGrids);
 				updateTable();
 			}
 		});
@@ -145,6 +146,7 @@ public class LoadDialog extends JDialog {
 	private static final int EASY=81;
 	private static final int MEDIUM=54;
 	private static final int HARD=39;
+	
 	private void updateTable() {		
 		String difficulty = (String) diffCombo.getSelectedItem();
 		if (difficulty.equals("Easy")) {
