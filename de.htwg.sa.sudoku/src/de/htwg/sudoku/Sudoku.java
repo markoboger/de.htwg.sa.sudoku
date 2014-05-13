@@ -19,7 +19,7 @@ public final class Sudoku {
 	private static Sudoku instance = null;
 
 	public static Sudoku getInstance() {
-		if (instance == null) instance = new Sudoku();
+		if (instance == null) { instance = new Sudoku();}
 		return instance;
 	}
 	

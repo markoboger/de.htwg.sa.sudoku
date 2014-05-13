@@ -19,21 +19,21 @@ public class PersistentCell implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public Integer id;
+	private Integer id;
 
-	public Integer value = 0;
+	private Integer value = 0;
 
 	@Column(name = "rowcell")
-	public Integer row = 0;
+	private Integer row = 0;
 
 	@Column(name = "columncell")
-	public Integer column = 0;
+	private Integer column = 0;
 
-	public Boolean given = false;
+	private Boolean given = false;
 
 	@ManyToOne
 	@JoinColumn(name = "gridid")
-	public PersistentGrid grid;
+	private PersistentGrid grid;
 	
 	
 

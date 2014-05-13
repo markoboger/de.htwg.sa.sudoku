@@ -23,240 +23,255 @@ import de.htwg.sudoku.controller.ISudokuController;
 
 public class SudokuMenu {
 	
-	private ISudokuController controller;
+	private static final int SIZE1BY1 = 1;
+    private static final int SIZE4BY4 = 2;
+    private static final int SIZE9BY9 = 3;
+    private ISudokuController controller;
 	private JFrame frame;
 	
 	public SudokuMenu(JFrame frame, ISudokuController controller) {
 		this.frame = frame;
 		this.controller = controller;
 	}
-	JMenu file ;
-	JMenuItem  item_newSudoku, item_save, item_load, item_save_to_DB, item_load_from_DB, item_exit ; 
-	
-	JMenu edit ;
-	JMenuItem  item_undo, item_redo, item_copy, item_paste ; 
-	
-	JMenu solve ;
-	JMenuItem  item_solve_Now ; 
-	
-	JMenu highlight ;
-	JMenuItem  item_none, item_1, item_2, item_3, item_4, item_5, item_6, item_7, item_8, item_9 ; 
-	
-	JMenu options ;
-	JMenuItem  item_toggle_Show_Candidates, item_resize_to_9_by_9, item_resize_to_4_by_4, item_resize_to_1_by_1 ; 
-	
+
 	
 	
 	public JMenuBar buildMenuBar() {
+	    
+	    JMenu file ;
+	    JMenuItem  itemNewSudoku, itemSave, itemLoad, itemSaveToDB, itemLoadFromDB, itemExit ; 
+	    
+	    JMenu edit ;
+	    JMenuItem  itemUndo, itemRedo, itemCopy, itemPaste ; 
+	    
+	    JMenu solve ;
+	    JMenuItem  itemSolveNow ; 
+	    
+	    JMenu highlight ;
+	    JMenuItem  itemNone, item1, item2, item3, item4, item5, item6, item7, item8, item9 ; 
+	    
+	    JMenu options ;
+	    JMenuItem  itemToggleShowCandidates, itemResizeTo9by9, itemResizeTo4by4, itemResizeTo1by1 ; 
+	    
 		JMenuBar menuBar = new JMenuBar();
 		file = new JMenu("File ");
 		file.setMnemonic(KeyEvent.VK_F); 
-		item_newSudoku = new JMenuItem("NewSudoku");
-		item_newSudoku.setMnemonic(KeyEvent.VK_N); 
-		item_newSudoku.addActionListener(new ActionListener() {
+		itemNewSudoku = new JMenuItem("NewSudoku");
+		itemNewSudoku.setMnemonic(KeyEvent.VK_N); 
+		itemNewSudoku.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controller.create();
 			}
 		});
-		file.add(item_newSudoku);
-		item_save = new JMenuItem("Save");
-		item_save.setMnemonic(KeyEvent.VK_S); 
-		item_save.addActionListener(new ActionListener() {
+		file.add(itemNewSudoku);
+		itemSave = new JMenuItem("Save");
+		itemSave.setMnemonic(KeyEvent.VK_S); 
+		itemSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				save(frame);
 			}
 		});
-		file.add(item_save);
-		item_load = new JMenuItem("Load");
-		item_load.setMnemonic(KeyEvent.VK_L); 
-		item_load.addActionListener(new ActionListener() {
+		file.add(itemSave);
+		itemLoad = new JMenuItem("Load");
+		itemLoad.setMnemonic(KeyEvent.VK_L); 
+		itemLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				load(frame);
 			}
 		});
-		file.add(item_load);
-		item_save_to_DB = new JMenuItem("Save to DB");
-		item_save_to_DB.addActionListener(new ActionListener() {
+		file.add(itemLoad);
+		itemSaveToDB = new JMenuItem("Save to DB");
+		itemSaveToDB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				new SaveDialog(frame,controller);
 			}
 		});
-		file.add(item_save_to_DB);
-		item_load_from_DB = new JMenuItem("Load from DB");
-		item_load_from_DB.addActionListener(new ActionListener() {
+		file.add(itemSaveToDB);
+		itemLoadFromDB = new JMenuItem("Load from DB");
+		itemLoadFromDB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				new LoadDialog(controller);
 			}
 		});
-		file.add(item_load_from_DB);
-		item_exit = new JMenuItem("Exit");
-		item_exit.setMnemonic(KeyEvent.VK_X); 
-		item_exit.addActionListener(new ActionListener() {
+		file.add(itemLoadFromDB);
+		itemExit = new JMenuItem("Exit");
+		itemExit.setMnemonic(KeyEvent.VK_X); 
+		itemExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controller.exit();
 			}
 		});
-		file.add(item_exit);
+		file.add(itemExit);
 		menuBar.add(file);
 		edit = new JMenu("Edit ");
 		edit.setMnemonic(KeyEvent.VK_E); 
-		item_undo = new JMenuItem("Undo");
-		item_undo.setMnemonic(KeyEvent.VK_U); 
-		item_undo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z,
+		itemUndo = new JMenuItem("Undo");
+		itemUndo.setMnemonic(KeyEvent.VK_U); 
+		itemUndo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z,
 				InputEvent.CTRL_DOWN_MASK)); 
-		item_undo.addActionListener(new ActionListener() {
+		itemUndo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controller.undo();
 			}
 		});
-		edit.add(item_undo);
-		item_redo = new JMenuItem("Redo");
-		item_redo.setMnemonic(KeyEvent.VK_R); 
-		item_redo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y,
+		edit.add(itemUndo);
+		itemRedo = new JMenuItem("Redo");
+		itemRedo.setMnemonic(KeyEvent.VK_R); 
+		itemRedo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y,
 				InputEvent.CTRL_DOWN_MASK)); 
-		item_redo.addActionListener(new ActionListener() {
+		itemRedo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controller.redo();
 			}
 		});
-		edit.add(item_redo);
-		item_copy = new JMenuItem("Copy");
-		item_copy.setMnemonic(KeyEvent.VK_C); 
-		item_copy.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C,
+		edit.add(itemRedo);
+		itemCopy = new JMenuItem("Copy");
+		itemCopy.setMnemonic(KeyEvent.VK_C); 
+		itemCopy.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C,
 				InputEvent.CTRL_DOWN_MASK)); 
-		item_copy.addActionListener(new ActionListener() {
+		itemCopy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controller.copy();
 			}
 		});
-		edit.add(item_copy);
-		item_paste = new JMenuItem("Paste");
-		item_paste.setMnemonic(KeyEvent.VK_P); 
-		item_paste.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V,
+		edit.add(itemCopy);
+		itemPaste = new JMenuItem("Paste");
+		itemPaste.setMnemonic(KeyEvent.VK_P); 
+		itemPaste.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V,
 				InputEvent.CTRL_DOWN_MASK)); 
-		item_paste.addActionListener(new ActionListener() {
+		itemPaste.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controller.paste();
 			}
 		});
-		edit.add(item_paste);
+		edit.add(itemPaste);
 		menuBar.add(edit);
 		solve = new JMenu("Solve ");
 		solve.setMnemonic(KeyEvent.VK_S); 
-		item_solve_Now = new JMenuItem("Solve Now");
-		item_solve_Now.addActionListener(new ActionListener() {
+		itemSolveNow = new JMenuItem("Solve Now");
+		itemSolveNow.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controller.solve();
 			}
 		});
-		solve.add(item_solve_Now);
+		solve.add(itemSolveNow);
 		menuBar.add(solve);
 		highlight = new JMenu("Highlight ");
 		highlight.setMnemonic(KeyEvent.VK_H); 
-		item_none = new JMenuItem("None");
-		item_none.addActionListener(new ActionListener() {
+		itemNone = new JMenuItem("None");
+		itemNone.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.highlight(0);
+			    final int digit=0;
+				controller.highlight(digit);
 			}
 		});
-		highlight.add(item_none);
-		item_1 = new JMenuItem("1");
-		item_1.addActionListener(new ActionListener() {
+		highlight.add(itemNone);
+		item1 = new JMenuItem("1");
+		item1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.highlight(1);
+			    final int digit=1;
+                controller.highlight(digit);
 			}
 		});
-		highlight.add(item_1);
-		item_2 = new JMenuItem("2");
-		item_2.addActionListener(new ActionListener() {
+		highlight.add(item1);
+		item2 = new JMenuItem("2");
+		item2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.highlight(2);
+			    final int digit=2;
+                controller.highlight(digit);
 			}
 		});
-		highlight.add(item_2);
-		item_3 = new JMenuItem("3");
-		item_3.addActionListener(new ActionListener() {
+		highlight.add(item2);
+		item3 = new JMenuItem("3");
+		item3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.highlight(3);
+			    final int digit=3;
+                controller.highlight(digit);
 			}
 		});
-		highlight.add(item_3);
-		item_4 = new JMenuItem("4");
-		item_4.addActionListener(new ActionListener() {
+		highlight.add(item3);
+		item4 = new JMenuItem("4");
+		item4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.highlight(4);
+			    final int digit=4;
+                controller.highlight(digit);
 			}
 		});
-		highlight.add(item_4);
-		item_5 = new JMenuItem("5");
-		item_5.addActionListener(new ActionListener() {
+		highlight.add(item4);
+		item5 = new JMenuItem("5");
+		item5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.highlight(5);
+			    final int digit=5;
+                controller.highlight(digit);
 			}
 		});
-		highlight.add(item_5);
-		item_6 = new JMenuItem("6");
-		item_6.addActionListener(new ActionListener() {
+		highlight.add(item5);
+		item6 = new JMenuItem("6");
+		item6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.highlight(6);
+			    final int digit=6;
+                controller.highlight(digit);
 			}
 		});
-		highlight.add(item_6);
-		item_7 = new JMenuItem("7");
-		item_7.addActionListener(new ActionListener() {
+		highlight.add(item6);
+		item7 = new JMenuItem("7");
+		item7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.highlight(7);
+			    final int digit=7;
+                controller.highlight(digit);
 			}
 		});
-		highlight.add(item_7);
-		item_8 = new JMenuItem("8");
-		item_8.addActionListener(new ActionListener() {
+		highlight.add(item7);
+		item8 = new JMenuItem("8");
+		item8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.highlight(8);
+			    final int digit=8;
+                controller.highlight(digit);
 			}
 		});
-		highlight.add(item_8);
-		item_9 = new JMenuItem("9");
-		item_9.addActionListener(new ActionListener() {
+		highlight.add(item8);
+		item9 = new JMenuItem("9");
+		item9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.highlight(9);
+			    final int digit=9;
+                controller.highlight(digit);
 			}
 		});
-		highlight.add(item_9);
+		highlight.add(item9);
 		menuBar.add(highlight);
 		options = new JMenu("Options ");
 		options.setMnemonic(KeyEvent.VK_O); 
-		item_toggle_Show_Candidates = new JMenuItem("Toggle Show Candidates");
-		item_toggle_Show_Candidates.addActionListener(new ActionListener() {
+		itemToggleShowCandidates = new JMenuItem("Toggle Show Candidates");
+		itemToggleShowCandidates.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controller.showAllCandidates();
 			}
 		});
-		options.add(item_toggle_Show_Candidates);
-		item_resize_to_9_by_9 = new JMenuItem("Resize to 9 by 9");
-		item_resize_to_9_by_9.setMnemonic(KeyEvent.VK_NUMBER_SIGN); 
-		item_resize_to_9_by_9.addActionListener(new ActionListener() {
+		options.add(itemToggleShowCandidates);
+		itemResizeTo9by9 = new JMenuItem("Resize to 9 by 9");
+		itemResizeTo9by9.setMnemonic(KeyEvent.VK_NUMBER_SIGN); 
+		itemResizeTo9by9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.resetSize(3);
+				controller.resetSize(SIZE9BY9);
 			}
 		});
-		options.add(item_resize_to_9_by_9);
-		item_resize_to_4_by_4 = new JMenuItem("Resize to 4 by 4");
-		item_resize_to_4_by_4.setMnemonic(KeyEvent.VK_PLUS); 
-		item_resize_to_4_by_4.addActionListener(new ActionListener() {
+		options.add(itemResizeTo9by9);
+		itemResizeTo4by4 = new JMenuItem("Resize to 4 by 4");
+		itemResizeTo4by4.setMnemonic(KeyEvent.VK_PLUS); 
+		itemResizeTo4by4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.resetSize(2);
+				controller.resetSize(SIZE4BY4);
 			}
 		});
-		options.add(item_resize_to_4_by_4);
-		item_resize_to_1_by_1 = new JMenuItem("Resize to 1 by 1");
-		item_resize_to_1_by_1.setMnemonic(KeyEvent.VK_PERIOD); 
-		item_resize_to_1_by_1.addActionListener(new ActionListener() {
+		options.add(itemResizeTo4by4);
+		itemResizeTo1by1 = new JMenuItem("Resize to 1 by 1");
+		itemResizeTo1by1.setMnemonic(KeyEvent.VK_PERIOD); 
+		itemResizeTo1by1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.resetSize(1);
+				controller.resetSize(SIZE1BY1);
 			}
 		});
-		options.add(item_resize_to_1_by_1);
+		options.add(itemResizeTo1by1);
 		menuBar.add(options);
 		return menuBar;
 	}

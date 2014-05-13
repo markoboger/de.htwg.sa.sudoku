@@ -104,12 +104,10 @@ public class GridHibernateDAO implements IGridDAO {
 
 			tx.commit();
 		} catch (HibernateException ex) {
-			if (tx != null)
+			if (tx != null) {
 				tx.rollback();
-			throw new RuntimeException(ex.getMessage());
-
+			}
 		}
-
 	}
 
 	@Override
@@ -166,12 +164,10 @@ public class GridHibernateDAO implements IGridDAO {
 
 			tx.commit();
 		} catch (HibernateException ex) {
-			if (tx != null)
+			if (tx != null) {
 				tx.rollback();
-			throw new RuntimeException(ex.getMessage());
-
+		    }
 		}
-
 	}
 
 	@Override

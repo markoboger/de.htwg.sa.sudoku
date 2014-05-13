@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.ektorp.CouchDbConnector;
 import org.ektorp.CouchDbInstance;
 import org.ektorp.Revision;
@@ -22,6 +23,7 @@ import de.htwg.sudoku.persistence.IGridDAO;
 public class GridCouchdbDAO implements IGridDAO {
 
 	private CouchDbConnector db = null;
+	private Logger logger = Logger.getLogger("de.htwg.sudoku.persistence.couchdb");
 	
 	public GridCouchdbDAO() {
 		HttpClient client = null;
@@ -30,7 +32,7 @@ public class GridCouchdbDAO implements IGridDAO {
 					"http://lenny2.in.htwg-konstanz.de:5984").build();
 
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
+		    logger.error("Malformed URL", e);
 		}
 		CouchDbInstance dbInstance = new StdCouchDbInstance(client);
 		db = dbInstance.createConnector("sudoku_db", true);
@@ -183,7 +185,7 @@ public class GridCouchdbDAO implements IGridDAO {
 				try {
 					db.delete(id, r.get(i).getRev());
 				} catch (Exception e) {
-					e.printStackTrace();
+				    logger.error("An Error occured: ", e);
 				}
 			}
 

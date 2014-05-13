@@ -282,7 +282,7 @@ public class Grid extends AbstractGrid {
 
 	@Override
 	public void setName(String name) {
-		if(name != null) this.name = name;
+		if(name != null){ this.name = name;}
 	}
 
 	@Override

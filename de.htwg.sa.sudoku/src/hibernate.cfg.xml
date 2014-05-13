@@ -5,9 +5,9 @@
 <hibernate-configuration>
    <session-factory>
       <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-      <property name="connection.url">jdbc:mysql://localhost:3306/sudoku?createDatabaseIfNotExist=true</property>
-      <property name="connection.username">root</property>
-      <property name="connection.password">root</property>
+      <property name="connection.url">jdbc:mysql://lenny2.in.htwg-konstanz.de:3306/sudoku?createDatabaseIfNotExist=true</property>
+      <property name="connection.username">htwg</property>
+      <property name="connection.password">htwg</property>
       <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
       <property name="current_session_context_class">thread</property>
       <property name="hibernate.hbm2ddl.auto">update</property>

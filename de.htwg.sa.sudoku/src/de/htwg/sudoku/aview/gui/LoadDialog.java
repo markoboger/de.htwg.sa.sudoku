@@ -26,6 +26,8 @@ public class LoadDialog extends JDialog {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static final int BEVEL=10;
+	private static final int BUTTONS=10;
 
 	private JTable table;
 	private String[] columnNames = { "Name", "Difficulty"};
@@ -39,9 +41,9 @@ public class LoadDialog extends JDialog {
 
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
-		mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		mainPanel.setBorder(BorderFactory.createEmptyBorder(BEVEL, BEVEL, BEVEL, BEVEL));
 
-		JPanel optionsPanel = new JPanel(new FlowLayout(10));
+		JPanel optionsPanel = new JPanel(new FlowLayout(BUTTONS));
 		optionsPanel.setBorder(BorderFactory.createTitledBorder("Options"));
 		JLabel diffLabel = new JLabel("Difficulty: ");
 		diffCombo = new JComboBox<String>();
@@ -60,7 +62,8 @@ public class LoadDialog extends JDialog {
 		genButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				controller.generateGridToDB(20);
+			    final int numberOfGrids=20;
+				controller.generateGridToDB(numberOfGrids);
 				updateTable();
 			}
 		});
@@ -84,8 +87,8 @@ public class LoadDialog extends JDialog {
 		tablePanel.add(new JScrollPane(table));
 		mainPanel.add(tablePanel, BorderLayout.PAGE_END);
 
-		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10,
-				10));
+		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, BUTTONS,
+				BUTTONS));
 		JButton deleteButton = new JButton("Delete");
 		deleteButton.addActionListener(new ActionListener() {
 			@Override
@@ -140,14 +143,18 @@ public class LoadDialog extends JDialog {
 		this.setVisible(true);
 	}
 
+	private static final int EASY=81;
+	private static final int MEDIUM=54;
+	private static final int HARD=39;
+	
 	private void updateTable() {		
 		String difficulty = (String) diffCombo.getSelectedItem();
 		if (difficulty.equals("Easy")) {
-			rowData = controller.getRowData(55, 81);
+			rowData = controller.getRowData(MEDIUM+1, EASY);
 		} else if (difficulty.equals("Medium")) {
-			rowData = controller.getRowData(40, 54);
+			rowData = controller.getRowData(HARD+1, MEDIUM);
 		} else if (difficulty.equals("Hard")) {
-			rowData = controller.getRowData(0, 39);
+			rowData = controller.getRowData(0, HARD);
 		} else {
 			rowData = controller.getRowDataAll();
 		}

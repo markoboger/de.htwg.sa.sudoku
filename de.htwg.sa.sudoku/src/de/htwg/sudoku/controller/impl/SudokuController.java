@@ -301,7 +301,7 @@ public class SudokuController extends Observable implements ISudokuController {
 	@Override
 	public String[][] getRowDataAll() {
 		List<IGrid> grids = gridDAO.getAllGrids();
-		String[][] data = new String[grids.size()][3];
+		String[][] data = new String[grids.size()][NORMALGRID];
 		for(int i = 0; i < grids.size(); i++) {
 			IGrid g = grids.get(i);
 			data[i][0] = g.getName();
@@ -314,7 +314,7 @@ public class SudokuController extends Observable implements ISudokuController {
 	@Override
 	public String[][] getRowData(int min, int max) {
 		List<IGrid> grids = gridDAO.getGridsByDifficulty(max, min);
-		String[][] data = new String[grids.size()][3];
+		String[][] data = new String[grids.size()][NORMALGRID];
 		for(int i = 0; i < grids.size(); i++) {
 			IGrid g = grids.get(i);
 			data[i][0] = g.getName();

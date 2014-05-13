@@ -14,6 +14,7 @@ public class HighlightButtonPanel extends JPanel {
 
 	private final ButtonGroup group = new ButtonGroup();
 	private static final long serialVersionUID = 1L;
+	private static final int BUTTONSIZE=25;
 
 	public HighlightButtonPanel(final ISudokuController controller) {
 
@@ -29,7 +30,7 @@ public class HighlightButtonPanel extends JPanel {
         	String buttontext = String.valueOf(digit);
         	if (digit == 0) {buttontext = " ";} 
             button = new HighlightButton(buttontext, controller, digit);
-            button.setPreferredSize(new Dimension(25, 25));
+            button.setPreferredSize(new Dimension(BUTTONSIZE, BUTTONSIZE));
             group.add(button);
             add(button);
         }

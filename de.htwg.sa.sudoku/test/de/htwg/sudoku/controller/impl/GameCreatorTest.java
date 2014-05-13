@@ -23,15 +23,15 @@ public class GameCreatorTest {
 		
 	}
 
-	@Test
-	public void testFindHardGame() {
-		creator.findHardGame();
-		System.out.println(controller.getGrid().toString());
-		assertFalse(controller.getGrid().isSolved());
-		assertTrue(controller.getGrid().isSymmetric());
-			
-			
-		
-	}
+//	@Test
+//	public void testFindHardGame() {
+//		creator.findHardGame();
+//		System.out.println(controller.getGrid().toString());
+//		assertFalse(controller.getGrid().isSolved());
+//		assertTrue(controller.getGrid().isSymmetric());
+//			
+//			
+//		
+//	}
 
 }
