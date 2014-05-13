@@ -3,9 +3,14 @@ package de.htwg.sudoku.model.impl;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import de.htwg.sudoku.model.AbstractGrid;
 import de.htwg.sudoku.model.ICell;
@@ -296,8 +301,39 @@ public class Grid extends AbstractGrid {
 	}
 
 	@Override
-	public String toJson() {
-		// TODO Auto-generated method stub
-		return "JSON";
-	}
+    public String toJson() {
+        String result = "";
+        try {
+            int size = getCellsPerEdge();
+            @SuppressWarnings("unchecked")
+            Map<String, Object> mapMatrix[][] = new HashMap[size][size];
+            for (int row = 0; row < size; row++) {
+                for (int col = 0; col < size; col++) {
+                    mapMatrix[row][col] = new HashMap<String, Object>();
+                    mapMatrix[row][col].put("cell", getICell(row, col));
+                    boolean[] candidates = new boolean[size];
+                    for (int candidate = 0; candidate < size; candidate++) {
+                        candidates[candidate] = isCandidate(row, col,
+                                candidate + 1);
+                    }
+                    mapMatrix[row][col].put("candidates", candidates);
+                }
+            }
+
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("meta", this);
+            map.put("grid", mapMatrix);
+            ObjectMapper mapper = new ObjectMapper();
+
+            result = mapper.writeValueAsString(map);
+        } catch (JsonProcessingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return result;
+    }
+	
+    private boolean isCandidate(int row, int column, int candidate) {
+        return candidates(row, column).get(candidate);
+    }
 }
