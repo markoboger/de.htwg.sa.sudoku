@@ -294,4 +294,10 @@ public class Grid extends AbstractGrid {
 	public void setId(String id) {
 		this.id = id;
 	}
+
+	@Override
+	public String toJson() {
+		// TODO Auto-generated method stub
+		return "JSON";
+	}
 }

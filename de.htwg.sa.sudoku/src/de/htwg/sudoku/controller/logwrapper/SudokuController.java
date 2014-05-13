@@ -285,4 +285,9 @@ public class SudokuController implements IObservable, ISudokuController {
 		return realController.isSolved();
 	}
 
+	@Override
+	public boolean processInputLine(String line) {
+		return realController.processInputLine(line);
+	}
+
 }

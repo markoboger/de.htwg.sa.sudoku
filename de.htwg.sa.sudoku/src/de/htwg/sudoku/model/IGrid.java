@@ -106,4 +106,6 @@ public interface IGrid {
 	boolean isSolved();
 	
 	boolean isSymmetric();
+	
+	String toJson();
 }

@@ -23,12 +23,12 @@ public final class Sudoku {
 		return instance;
 	}
 	
+	private static Injector injector = Guice.createInjector(new SudokuModule());
+
+	
 	private Sudoku() {
 		// Set up logging through log4j
 		PropertyConfigurator.configure("log4j.properties");
-
-		// Set up Google Guice Dependency Injector
-		Injector injector = Guice.createInjector(new SudokuModule());
 
 		// Build up the application, resolving dependencies automatically by
 		// Guice
@@ -44,6 +44,10 @@ public final class Sudoku {
 	
 	public ISudokuController getController(){
 		return controller;
+	}
+	
+	public ISudokuController createController() {
+		return injector.getInstance(ISudokuController.class);
 	}
 	
 	public TextUI getTUI(){

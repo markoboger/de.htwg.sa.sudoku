@@ -8,6 +8,8 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 import java.util.BitSet;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.undo.UndoManager;
 
@@ -33,6 +35,9 @@ public class SudokuController extends Observable implements ISudokuController {
 	private UndoManager undoManager;
 	private int highlighted=0;
 	private static final int NORMALGRID=3;
+	private static final int DOTSIZE = 1;
+	private static final int PLUSSIZE = 2;
+	private static final int HASHSIZE = 3;
 	private IGridDAO gridDAO;
 
 	@Inject
@@ -42,6 +47,73 @@ public class SudokuController extends Observable implements ISudokuController {
 		this.undoManager = new UndoManager();
 		this.gridDAO = gridDAO;
 	}
+	
+	public boolean processInputLine(String line) {
+		boolean continu = true;
+		switch (line) { 
+		case "q" : 
+			continu = false;
+			break;
+		case "r" :
+			reset();
+			break;
+		case "n" : 
+			create();
+			break;
+		case "s" :
+			solve();
+			break;
+		case "z" :
+			undo();
+			break;
+		case "y" :
+			redo();
+			break;
+		case "c" :
+			copy();
+			break;
+		case "p" :
+			paste();
+			break;
+		case "." :
+			resetSize(DOTSIZE);
+			break;
+		case "+" :
+			resetSize(PLUSSIZE);
+			break;
+		case "#" :
+			resetSize(HASHSIZE);
+			break;
+		}
+		// if the command line has the form 123, set the cell (1,2) to value 3
+		if (line.matches("[0-9][0-9][0-9]")) {
+			int[] arg = readToArray(line);
+			setValue(arg[0], arg[1], arg[2]);
+		}
+		// if the command line has the form 12, get the candidates of cell (1,2) 
+		if (line.matches("[0-9][0-9]")) {
+			int[] arg = readToArray(line);
+			showCandidates(arg[0], arg[1]);
+		} 
+		// if the command line has the form 1, highlight 1 
+		if (line.matches("[0-9]")) {
+			int[] arg = readToArray(line);
+			highlight(arg[0]);
+		}
+		return continu;
+	}
+
+	private int[] readToArray(String line) {
+		Pattern p = Pattern.compile("[0-9]");
+		Matcher m = p.matcher(line);
+		int[] arg = new int[line.length()];
+		for (int i = 0; i < arg.length; i++) {
+			m.find();
+			arg[i] = Integer.parseInt(m.group());
+		}
+		return arg;
+	}
+
 	
 	public void setValue(int row, int column, int value) {
 		ICell cell = grid.getICell(row, column);

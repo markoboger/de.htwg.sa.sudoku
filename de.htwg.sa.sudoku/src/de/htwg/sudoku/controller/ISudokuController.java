@@ -4,6 +4,8 @@ import de.htwg.sudoku.model.IGrid;
 import de.htwg.util.observer.IObservable;
 
 public interface ISudokuController extends IObservable {
+	
+	boolean processInputLine(String line);
 
 	/**
 	 * Create a string representation of the Sudoku puzzle and put it into the
